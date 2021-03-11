@@ -117,5 +117,25 @@ Breadcrumbs::for('super-dashboard.oldManImages.edit', function (Trail $trail){
     $trail->parent('super-dashboard.oldManImages.show')
         ->push(__('breadcrumbs.edit'));
 });
-
 // end old man images
+
+Breadcrumbs::for('super-dashboard.awards.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.awards'), route('super-dashboard.awards.show'));
+});
+
+Breadcrumbs::for('super-dashboard.awards.showSeasons', function (Trail $trail){
+    $trail->parent('super-dashboard.awards.show')
+        ->push(__('keywords.the.seasons'), route('super-dashboard.awards.show'));
+});
+
+
+
+// awards
+
+
+
+
+
+
+// end awards

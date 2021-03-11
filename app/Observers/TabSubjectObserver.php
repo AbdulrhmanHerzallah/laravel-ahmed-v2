@@ -15,7 +15,7 @@ class TabSubjectObserver
      */
     public function created(TabSubject $tabSubject)
     {
-        //
+        $tabSubject->slug = SlugUtf8Helper::Slug($tabSubject->title);
     }
 
     /**

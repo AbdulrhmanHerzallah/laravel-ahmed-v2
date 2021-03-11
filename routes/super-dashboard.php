@@ -89,13 +89,24 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
             Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManImagesController@edit']);
             Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManImagesController@update']);
             Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManImagesController@updateViewImage']);
-
-
         });
-
         // end old man images
+
+
+        // view
+    });
+
+    //******** start awards *********//
+    Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards'], function (){
+        Route::get('/', ['as' => 'show', 'uses' => 'AwardsController@showAwards']);
+        Route::get('/show-seasons/{slug}', ['as' => 'showSeasons', 'uses' => 'AwardsController@showSeasons']);
+        Route::get('/apps/{id}', ['as' => 'showApps', 'uses' => 'AwardsController@showApps']);
+        Route::get('/show-apps-data-table/{id}', ['as' => 'showAppsDataTable', 'uses' => 'AwardsController@showAppsDataTable']);
 
 
     });
 
+    //******** end awards *************//
+
+    // awards
 });

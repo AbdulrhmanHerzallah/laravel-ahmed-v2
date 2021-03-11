@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         \App\Models\TabSubject::observe(\App\Observers\TabSubjectObserver::class);
+        \App\Models\Award::observe(\App\Observers\AwardObserver::class);
     }
 }

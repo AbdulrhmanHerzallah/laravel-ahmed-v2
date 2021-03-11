@@ -49,5 +49,12 @@ return [
     'old.man.museum' => 'متحف الياسين',
     'note.all.files.delete' => 'ملاحظة : سيتم استبدال جميع المحتويات القديمة بالجديدة.',
     'previous.subjects' => 'المحتويات السابقة',
-    'files' => 'الملفات'
+    'files' => 'الملفات',
+    'awards' => 'الجوائز',
+    'awards.department' => 'قسم الجوائز',
+    'seasons' => 'مواسم',
+    'the.seasons' => 'المواسم',
+    'cv.file' => 'السيرة الذاتية',
+    'the.name' => 'الاسم',
+    'award.season' => ':award_name | موسم :season'
 ];
