@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\SuperDashboard\View;
 
 use App\Helpers\TabSubjectHelperModel;
+use App\Helpers\TabHelperModel;
 use App\Http\Controllers\Controller;
 use App\Models\Tab;
 use App\Models\TabSubject;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+
+
 
 class OldManMemoryVideosController extends Controller
 {
@@ -90,23 +93,7 @@ class OldManMemoryVideosController extends Controller
 
     public function updateViewImage(Request $request)
     {
-
-       $request->validate([
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-       ]);
-
-       $tab = Tab::where('key', 'old_man_memory_videos')->first();
-
-       $imageFile = Carbon::now()->timestamp.'-'.$request->file('image')->getClientOriginalName();
-       $request->file('image')->move(public_path('images') ,$imageFile);
-
-       $tab->image = '/images/'.$imageFile;
-       $tab->save();
-
-       toast(__('keywords.update.well.done'), 'success');
-       return redirect()->back();
-
-
+       return TabHelperModel::updateViewImage($request, 'old_man_memory_videos');
     }
 
     // use delete_at to deactivate

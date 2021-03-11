@@ -63,11 +63,37 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
         // start old man stuff
         Route::group(['prefix' => 'old-man-stuff', 'as' => 'oldManStuff.'], function (){
             Route::get('/', ['as' => 'show', 'uses' => 'OldManStuffController@show']);
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'OldManStuffController@restore']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'OldManStuffController@delete']);
+            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'uses' => 'OldManStuffController@forceDelete']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManStuffController@edit']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManStuffController@update']);
             Route::get('/create', ['as' => 'create', 'uses' => 'OldManStuffController@create']);
             Route::post('/store', ['as' => 'store', 'uses' => 'OldManStuffController@store']);
+            Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManStuffController@updateViewImage']);
+
+
         });
         // end old man stuff
 
+
+        // start old mam images
+
+        Route::group(['prefix' => 'old-man-images', 'as' => 'oldManImages.'], function (){
+            Route::get('/', ['as' => 'show', 'uses' => 'OldManImagesController@show']);
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'OldManImagesController@restore']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'OldManImagesController@delete']);
+            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'uses' => 'OldManImagesController@forceDelete']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'OldManImagesController@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'OldManImagesController@store']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManImagesController@edit']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManImagesController@update']);
+            Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManImagesController@updateViewImage']);
+
+
+        });
+
+        // end old man images
 
 
     });

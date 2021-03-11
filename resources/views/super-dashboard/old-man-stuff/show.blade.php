@@ -47,7 +47,7 @@
                                     {{$i->title}}
                                 </td>
                                 <td>
-                                    <a href="{{route('super-dashboard.oldManMemoryVideos.edit', ['id' => $i->id])}}" class="btn btn-primary">
+                                    <a href="{{route('super-dashboard.oldManStuff.edit', ['id' => $i->id])}}" class="btn btn-primary">
                                         <i class="far fa-edit"></i>
                                     </a>
 
@@ -60,8 +60,8 @@
                             <span class="switch switch-outline switch-icon switch-success d-flex justify-content-center">
 									<label>
 										<input @if(!$i->deleted_at) checked @endif
-                                        data-delete-route="{{route('super-dashboard.oldManMemoryVideos.delete', ['id' => $i->id])}}"
-                                               data-restore-route="{{route('super-dashboard.oldManMemoryVideos.restore', ['id' => $i->id])}}"
+                                        data-delete-route="{{route('super-dashboard.oldManStuff.delete', ['id' => $i->id])}}"
+                                               data-restore-route="{{route('super-dashboard.oldManStuff.restore', ['id' => $i->id])}}"
                                                onclick="toggleActive(event)" type="checkbox"  name="select">
 										<span></span>
 									</label>
@@ -89,7 +89,7 @@
                 </div>
                 <form id="routeDelete" method="get">
                     <div class="modal-body">
-                        {{__('keywords.slider.message.delete')}}
+                        {{__('keywords.do.you.want.to.delete')}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('keywords.cancel')}}</button>
@@ -111,7 +111,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <form action="{{route('super-dashboard.oldManMemoryVideos.updateViewImage')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('super-dashboard.oldManStuff.updateViewImage')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="image">{{__('keywords.update.image')}}<span class="text-danger">*</span></label>

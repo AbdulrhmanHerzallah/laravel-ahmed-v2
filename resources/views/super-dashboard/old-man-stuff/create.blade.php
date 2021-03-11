@@ -35,7 +35,7 @@
                     </div>
                     @enderror
                     <label for="event_location">{{__('keywords.event.location')}}</label>
-                    <input value="{{old('event_location')}}" id="title" name="location_event" type="text" class="form-control form-control-solid">
+                    <input value="{{old('location_event')}}" id="title" name="location_event" type="text" class="form-control form-control-solid">
                 </div>
 
 

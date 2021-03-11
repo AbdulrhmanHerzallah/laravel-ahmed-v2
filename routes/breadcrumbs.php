@@ -74,9 +74,48 @@ Breadcrumbs::for('super-dashboard.oldManStuff.show', function (Trail $trail){
         ->push(__('keywords.old.stuff'), route('super-dashboard.oldManStuff.show'));
 });
 
+Breadcrumbs::for('super-dashboard.oldManStuff.create', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManStuff.show')
+        ->push(__('keywords.create'), route('super-dashboard.oldManStuff.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.oldManStuff.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManStuff.show')
+        ->push(__('keywords.edit'));
+});
+
+
 Breadcrumbs::for('super-dashboard.oldManMemoryVideos.edit', function (Trail $trail){
     $trail->parent('super-dashboard.oldManMemoryVideos.show')
         ->push(__('breadcrumbs.edit'));
 });
 
 // end old man stuff
+
+
+
+// start old man images
+Breadcrumbs::for('super-dashboard.oldManImages.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.old.man.images'), route('super-dashboard.oldManImages.show'));
+});
+
+Breadcrumbs::for('super-dashboard.oldManImages.create', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManImages.show')
+        ->push(__('keywords.create'), route('super-dashboard.oldManImages.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.oldManImages.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManImages.show')
+        ->push(__('keywords.edit'));
+});
+
+
+Breadcrumbs::for('super-dashboard.oldManImages.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManImages.show')
+        ->push(__('breadcrumbs.edit'));
+});
+
+// end old man images

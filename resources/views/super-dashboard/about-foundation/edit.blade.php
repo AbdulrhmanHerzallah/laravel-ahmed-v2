@@ -44,7 +44,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="image">الصور</label>
+                    <label for="image">{{__('keywords.images')}}</label>
                     <div class="d-flex justify-content-between">
                         <input name="image" id="image" type="file">
                         @if($tabSubject->image)
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary mr-2">حفظ</button>
+                <button type="submit" class="btn btn-primary mr-2">{{__('keywords.save')}}</button>
             </div>
         </form>
     </div>

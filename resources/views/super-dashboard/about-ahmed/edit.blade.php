@@ -14,7 +14,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="title">العنوان<span class="text-danger">*</span></label>
+                    <label for="title">{{__('keywords.title')}}<span class="text-danger">*</span></label>
                     <input value="{{old('title', $tabSubject->title)}}" id="title" name="title" type="text" class="form-control form-control-solid">
                 </div>
 
@@ -33,7 +33,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="image">الصور<span class="text-danger">*</span></label>
+                    <label for="image">{{__('keywords.image')}}<span class="text-danger">*</span></label>
                     <div class="d-flex justify-content-between">
                         <input name="image" id="image" type="file">
                         @if($tabSubject->image)
@@ -48,7 +48,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="video">الفديو<span class="text-danger">*</span></label>
+                    <label for="video">{{__('keywords.video')}}<span class="text-danger">*</span></label>
                     <div class="d-flex justify-content-between">
                         <input name="video" id="video" type="file">
                         @if($tabSubject->video)
@@ -58,15 +58,15 @@
                         @endif
                     </div>
 
-                    <div class="progress mt-5">
-                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+{{--                    <div class="progress mt-5">--}}
+{{--                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>--}}
+{{--                    </div>--}}
 
                 </div>
 
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary mr-2">حفظ</button>
+                <button type="submit" class="btn btn-primary mr-2">{{__('keywords.save')}}</button>
             </div>
         </form>
     </div>

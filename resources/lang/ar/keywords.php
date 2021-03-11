@@ -43,5 +43,11 @@ return [
     'update.image' => 'تحديث الصورة',
     'old.stuff' => 'مقتنيات الشيخ',
     'old.man.images' => 'صور الشيخ',
-    'old.stuff.create' => 'مقتنيات الشيخ أحمد ياسين | انشاء'
+    'old.stuff.create' => 'مقتنيات الشيخ أحمد ياسين | انشاء',
+    'do.you.want.to.delete' => 'هل انت تريد الحذف؟',
+    'create' => 'انشاء',
+    'old.man.museum' => 'متحف الياسين',
+    'note.all.files.delete' => 'ملاحظة : سيتم استبدال جميع المحتويات القديمة بالجديدة.',
+    'previous.subjects' => 'المحتويات السابقة',
+    'files' => 'الملفات'
 ];
