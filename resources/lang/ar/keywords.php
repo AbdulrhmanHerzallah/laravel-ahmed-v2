@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'slider' => 'سلايدر',
     'slider.create' => 'انشاء سلايدر جديد',
@@ -80,7 +79,35 @@ return [
     'winner_desc' => 'كلمة عن الفائزن في المواسم السابقة',
     'user.name' => 'اسم المتسابق',
     'download.file' => 'حمل المرفق',
+    'download.files' => 'حمل المرفقات',
     'app' => 'الطلب',
     'home.page' => 'الصفحة الرئيسية',
-    'select.winners.in.season' => 'تحديد الفائزين لهذا الموسم'
+    'select.winners.in.season' => 'تحديد الفائزين لهذا الموسم',
+    'work.type' => 'نوع العمل',
+    'found.name' => 'اسم المؤسسة',
+    'found.work.business' => 'مجال عمل المؤسسة',
+    'found.administrator.name' => 'اسم مدير المؤسسة',
+    'found.location' => 'موقع المؤسسة',
+    'found.phone' => 'رقم جوال المؤسسة',
+    'found.tel' => 'رقم هاتف المؤسسة',
+    'book.name' => 'اسم الكتاب',
+    'book.lang' => 'لغة الكاتب',
+    'book.important' => 'اهمية الكتاب',
+    'add.value.book' => 'القيمة المضافة للكتاب',
+    'date.witter.book' => 'تاريخ تأليف الكتاب',
+    'date.witter.book.last.book' => 'تاريخ تأليف اخر كتاب',
+    'pages.book' => 'عدد طبعات الكاتب',
+    'deposit.number' => 'رقم الايداع',
+    'publishing.house' => 'دار النشر',
+    'book.summary' => 'ملخص الكتاب',
+    'download.book' => 'حمل الكتاب',
+    'company' => 'مؤسسة',
+    'personally' => 'شخصي',
+    'found.field' => 'مجال عمل المؤسسة',
+    'view.applicants.for.the.award' => 'عرض المتقدمين للجائزة',
+    'edit.data.season' => 'تعديل بينات الموسم',
+    'show.winners' => 'عرض الفائزين',
+    'delete.season' => 'حذف الموسم',
+    'can.not.delete.season' => 'لا يمكن حذف الموسم لانه مرتبط بعدة طلبات سابقة!'
+
 ];

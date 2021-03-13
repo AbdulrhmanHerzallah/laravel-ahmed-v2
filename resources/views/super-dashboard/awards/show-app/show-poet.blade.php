@@ -5,7 +5,7 @@
         <div class="card-header">
             <h3 class="card-title">{{__('keywords.award.season', ['award_name' => $app->award_name, 'season' => $app->season_name])}}</h3>
         </div>
-        <form action="{{route('super-dashboard.oldManStuff.store')}}" method="post" enctype="multipart/form-data" class="form">
+        <form class="form">
             <div class="card-body">
                 <div class="form-group">
                     <label for="user_name">{{__('keywords.user.name')}}</label>

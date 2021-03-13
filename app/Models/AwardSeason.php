@@ -14,22 +14,24 @@ class AwardSeason extends Model
 
     protected $guarded = [];
 
-    protected $dates = ['start_date', 'end_date', 'advertising_date'];
+    protected $appends = ['start_date_edit', 'end_date_edit', 'advertising_date_edit'];
+
+//    protected $dates = ['start_date', 'end_date', 'advertising_date'];
 
 
-    public function getStartDateAttribute($value)
+    public function getStartDateEditAttribute($value)
     {
-        return Carbon::parse($value)->isoFormat('dddd Y/mm/d');
+        return Carbon::parse($this->attributes['start_date'])->isoFormat('dddd Y/mm/d');
     }
 
-    public function getEndDateAttribute($value)
+    public function getEndDateEditAttribute()
     {
-        return Carbon::parse($value)->isoFormat('dddd Y/mm/d');
+        return Carbon::parse($this->attributes['end_date'])->isoFormat('dddd Y/mm/d');
     }
 
-    public function getAdvertisingDateAttribute($value)
+    public function getAdvertisingDateEditAttribute()
     {
-        return Carbon::parse($value)->isoFormat('dddd Y/mm/d');
+        return Carbon::parse($this->attributes['advertising_date'])->isoFormat('dddd Y/mm/d');
     }
 
 

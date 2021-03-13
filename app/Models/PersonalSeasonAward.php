@@ -11,10 +11,8 @@ class PersonalSeasonAward extends Model
 
     protected $guarded = [];
 
-
     public function app()
     {
         return $this->belongsTo(Application::class);
     }
-
 }

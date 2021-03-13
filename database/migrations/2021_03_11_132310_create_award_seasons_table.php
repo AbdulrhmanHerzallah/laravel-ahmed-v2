@@ -22,9 +22,9 @@ class CreateAwardSeasonsTable extends Migration
             $table->unsignedBigInteger('award_id')->nullable()->index();
             $table->foreign('award_id')->references('id')->on('awards');
 
-            $table->timestamp('start_date', 0)->nullable();
-            $table->timestamp('end_date', 0)->nullable();
-            $table->timestamp('advertising_date', 0)->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->date('advertising_date')->nullable();
 
             $table->softDeletes();
 

@@ -14,10 +14,8 @@ use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Facades\File;
 
-use App\Models\FreeAward;
-use App\Models\WriterAward;
-use App\Models\PersonalSeasonAward;
-use App\Models\PoetAward;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AwardsController extends Controller
 {
@@ -33,6 +31,7 @@ class AwardsController extends Controller
        $award = Award::findOrFail($award_id);
        return view('super-dashboard.awards.edit-award', ['award' => $award]);
     }
+
 
     public function updateAward($award_id, Request $request)
     {
@@ -68,6 +67,40 @@ class AwardsController extends Controller
        {
            return view('super-dashboard.awards.show-award-seasons', ['award' => $award]);
        }
+    }
+
+
+    public function updateSeason($id, Request $request)
+    {
+        $request->validate([
+            'season_name' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'advertising_date' => 'required|date',
+        ]);
+
+        $awardSeason = AwardSeason::withTrashed()->findOrFail($id);
+        $awardSeason->update($request->all());
+        $awardSeason->save();
+
+        toast(__('keywords.create.successfully'), 'success');
+        return redirect()->back();
+    }
+
+    public function deleteSeason($id)
+    {
+
+        try {
+            $awardSeason = AwardSeason::withTrashed()->findOrFail($id);
+            $awardSeason->forceDelete();
+
+            toast(__('keywords.delete.well.done'), 'success');
+            return redirect()->back();
+        }catch (\Illuminate\Database\QueryException $queryException){
+            Alert::info(__('keywords.can.not.delete.season'));
+            return redirect()->back();
+        }
+
     }
 
     public function showApps($id)
@@ -207,7 +240,7 @@ class AwardsController extends Controller
                 $app = $this->getAppData($app_id, ['user','writerAward']);
                 return view('super-dashboard.awards.show-app.show-writer', ['app' => $app]);
             case 'personality';
-                $app = $this->getAppData($app_id, ['user','personalSeasonAward']);
+                $app = $this->getAppData($app_id, ['user','personalSeasonAward', 'files']);
                 return view('super-dashboard.awards.show-app.show-personality', ['app' => $app]);
             case 'poet';
                 $app = $this->getAppData($app_id, ['user','poetAward']);

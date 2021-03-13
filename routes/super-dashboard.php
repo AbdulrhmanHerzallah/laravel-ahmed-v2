@@ -107,6 +107,9 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
         Route::get('/edit/{award_id}/{award_name}', ['as' => 'editAward', 'uses' => 'AwardsController@editAward']);
         Route::post('/update/{award_id}', ['as' => 'updateAward', 'uses' => 'AwardsController@updateAward']);
 
+        Route::post('/update-season/{id}', ['as' => 'updateSeason', 'uses' => 'AwardsController@updateSeason']);
+        Route::get('/update-delete/{id}', ['as' => 'deleteSeason', 'uses' => 'AwardsController@deleteSeason']);
+
 
         Route::get('/show-app/{award_type}/{app_id}', ['as' => 'showApp', 'uses' => 'AwardsController@showApp']);
 

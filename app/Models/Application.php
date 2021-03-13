@@ -11,9 +11,6 @@ class Application extends Model
 
     protected $guarded = [];
 
-
-
-
     public function award()
     {
         return $this->belongsTo(Award::class);
@@ -23,8 +20,6 @@ class Application extends Model
     {
         return $this->belongsTo(AwardSeason::class);
     }
-
-
 
     public function user()
     {
@@ -50,6 +45,11 @@ class Application extends Model
     public function writerAward()
     {
         return $this->hasOne(WriterAward::class);
+    }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
     }
 
 }
