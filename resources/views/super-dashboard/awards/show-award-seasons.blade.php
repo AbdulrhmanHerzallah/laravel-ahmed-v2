@@ -1,4 +1,4 @@
-@extends('super-dashboard.index', ['title' => __('keywords.seasons').' | '.$awardSeasons->name])
+@extends('super-dashboard.index', ['title' => __('keywords.seasons').' | '.$award->name])
 
 @section('head')
     <style>
@@ -13,20 +13,12 @@
     <div class="card card-custom gutter-b">
         <div class="card-header">
             <div class="card-title">
-                <a href="{{route('super-dashboard.oldManImages.create')}}" class="btn btn-success mt-ladda-btn ladda-button" data-style="expand-up">
+                <a href="{{route('super-dashboard.awards.createSeason', ['award_id' => $award->id, 'award_name' => $award->slug])}}" class="btn btn-success mt-ladda-btn ladda-button" data-style="expand-up">
                     <span class="ladda-label">{{__('keywords.create.new')}}<i class="fas fa-plus mx-2"></i></span>
                     <span class="ladda-spinner"></span></a>
             </div>
-{{--            <div class="card-title">--}}
-{{--                <button type="button" class="btn btn-primary mt-ladda-btn ladda-button" data-style="expand-up"--}}
-{{--                        data-toggle="modal" data-target="#updateImageView"--}}
-{{--                >--}}
-{{--                    <span class="ladda-label">{{__('keywords.edit.image.show')}}<i class="far fa-edit"></i></span>--}}
-{{--                    <span class="ladda-spinner"></span></button>--}}
-{{--            </div>--}}
         </div>
         <div class="card-body">
-            <!--begin::Example-->
             <div class="example mb-10">
                 <div class="example-preview">
                     <table class="table">
@@ -41,14 +33,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($awardSeasons->awardSeasons as $i)
+                        @foreach($award->awardSeasons as $i)
                             <tr>
                                 <td>{{$i->season_name}}</td>
                                 <td>{{$i->start_date}}</td>
                                 <td>{{$i->end_date}}</td>
                                 <td>{{$i->advertising_date}}</td>
                                 <td>
-                                    <a href="{{route('super-dashboard.awards.showApps', ['id' => $i->id])}}" class="btn btn-success">
+                                    <a href="{{route('super-dashboard.awards.showApps', ['id' => $i->id, 'award_name' => $award->slug, 'season_name' => $i->slug])}}" class="btn btn-success">
                                         <i class="far fa-eye"></i>
                                     </a>
                                 </td>
@@ -64,5 +56,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

@@ -44,4 +44,6 @@ class AwardSeason extends Model
         return $this->hasMany(Application::class);
     }
 
+
+
 }

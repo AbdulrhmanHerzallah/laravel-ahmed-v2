@@ -112,30 +112,48 @@ Breadcrumbs::for('super-dashboard.oldManImages.edit', function (Trail $trail){
         ->push(__('keywords.edit'));
 });
 
-
 Breadcrumbs::for('super-dashboard.oldManImages.edit', function (Trail $trail){
     $trail->parent('super-dashboard.oldManImages.show')
         ->push(__('breadcrumbs.edit'));
 });
 // end old man images
 
+
+
+
+// start award
 Breadcrumbs::for('super-dashboard.awards.show', function (Trail $trail){
     $trail->parent('super-dashboard.index')
         ->push(__('keywords.awards'), route('super-dashboard.awards.show'));
 });
 
-Breadcrumbs::for('super-dashboard.awards.showSeasons', function (Trail $trail){
+
+Breadcrumbs::for('super-dashboard.awards.editAward', function (Trail $trail){
     $trail->parent('super-dashboard.awards.show')
-        ->push(__('keywords.the.seasons'), route('super-dashboard.awards.show'));
+        ->push(__('keywords.edit'));
 });
 
 
+Breadcrumbs::for('super-dashboard.awards.showSeasons', function (Trail $trail){
+    $trail->parent('super-dashboard.awards.show')
+        ->push(__('keywords.the.seasons'), route('super-dashboard.awards.showSeasons', ['slug' => request()->route()->parameters()['award_name'] ?? '-']));
+});
 
-// awards
+Breadcrumbs::for('super-dashboard.awards.createSeason', function (Trail $trail){
+    $trail->parent('super-dashboard.awards.showSeasons')
+        ->push(__('keywords.create.new.season'));
+});
+
+Breadcrumbs::for('super-dashboard.awards.showApps', function (Trail $trail){
+    $trail->parent('super-dashboard.awards.showSeasons')
+        ->push(__('keywords.applications'));
+});
 
 
-
-
+//Breadcrumbs::for('super-dashboard.awards.showApp', function (Trail $trail){
+//    $trail->parent('super-dashboard.awards.showApps')
+//        ->push(__('keywords.app'));
+//});
 
 
 // end awards

@@ -2,7 +2,6 @@
 
 
 return [
-
     'slider' => 'سلايدر',
     'slider.create' => 'انشاء سلايدر جديد',
     'slider.message.success' => 'تم انشاء السلايدر بنجاح',
@@ -56,5 +55,32 @@ return [
     'the.seasons' => 'المواسم',
     'cv.file' => 'السيرة الذاتية',
     'the.name' => 'الاسم',
-    'award.season' => ':award_name | موسم :season'
+    'award.season' => ':award_name | موسم :season',
+    'applications' => 'الطلبات',
+    'nomination.accepted' => 'تم ترشيح المتسابق بنجاح',
+    'nomination.rejected' => 'تم رفض ترشيح المتسابق',
+    'initial.approval' => 'تم الموافقة الاولية للمتسابق',
+    'initial.rejection' => 'تم الرفض الاولي للمتسابق',
+    'email' => 'الاميل',
+    'nomination' => 'ترشيح',
+    'initial.approval.show' => 'الموافقة الاولية',
+    'show.users.info.racer' => 'عرض بينات المتسابق',
+    'show.app' => 'عرض الطلب',
+    'season.name' => 'اسم الموسم',
+    'season.data.start' => 'تاريخ بدأ الموسم',
+    'season.data.end' => 'تاريخ نهاية الموسم',
+    'season.data.advertising.award' => 'تاريخ اعلان الجائزة',
+    'create.new.season' => 'انشاء موسم جديد',
+    'award.name' => 'اسم الجائزة',
+    'desc' => 'الوصف',
+    'filtering_mechanism_desc' => 'الية التقدم للجائزة',
+    'conditions_desc' => 'شروط التقدم للجائزة',
+    'subject_desc' => 'وصف الجائزة ومميزاتها',
+    'registration_date_desc' => 'موعد الجائزة القادمة',
+    'winner_desc' => 'كلمة عن الفائزن في المواسم السابقة',
+    'user.name' => 'اسم المتسابق',
+    'download.file' => 'حمل المرفق',
+    'app' => 'الطلب',
+    'home.page' => 'الصفحة الرئيسية',
+    'select.winners.in.season' => 'تحديد الفائزين لهذا الموسم'
 ];

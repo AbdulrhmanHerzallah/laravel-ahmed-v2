@@ -15,7 +15,12 @@ class AwardObserver
      */
     public function created(Award $award)
     {
-        $award->slug = SlugUtf8Helper::Slug($award->title);
+        //
+    }
+
+    public function crating(Award $award)
+    {
+        $award->slug = SlugUtf8Helper::Slug($award->name);
     }
 
     /**
@@ -26,7 +31,12 @@ class AwardObserver
      */
     public function updated(Award $award)
     {
-        $award->slug = SlugUtf8Helper::Slug($award->title);
+        //
+    }
+
+    public function updating(Award $award)
+    {
+        $award->slug = SlugUtf8Helper::Slug($award->name);
     }
 
     /**

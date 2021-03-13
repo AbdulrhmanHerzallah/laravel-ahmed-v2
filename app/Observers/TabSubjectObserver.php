@@ -15,8 +15,15 @@ class TabSubjectObserver
      */
     public function created(TabSubject $tabSubject)
     {
+        //
+    }
+
+    public function creating(TabSubject $tabSubject)
+    {
         $tabSubject->slug = SlugUtf8Helper::Slug($tabSubject->title);
     }
+
+
 
     /**
      * Handle the TabSubject "updated" event.
@@ -25,6 +32,11 @@ class TabSubjectObserver
      * @return void
      */
     public function updated(TabSubject $tabSubject)
+    {
+        //
+    }
+
+    public function updating(TabSubject $tabSubject)
     {
         $tabSubject->slug = SlugUtf8Helper::Slug($tabSubject->title);
     }

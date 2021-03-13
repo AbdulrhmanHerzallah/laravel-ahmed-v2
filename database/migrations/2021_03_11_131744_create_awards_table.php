@@ -18,11 +18,10 @@ class CreateAwardsTable extends Migration
 
             $table->string('name')->index();
             $table->string('slug')->index();
-            $table->text('desc');
+            $table->text('desc')->nullable();
 
             $table->string('img')->nullable();
 
-            $table->text('award_detail_desc')->nullable();
             $table->text('filtering_mechanism_desc')->nullable();
             $table->text('conditions_desc')->nullable();
             $table->text('subject_desc')->nullable();

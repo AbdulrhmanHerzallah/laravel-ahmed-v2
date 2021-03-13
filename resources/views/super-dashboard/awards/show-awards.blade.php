@@ -36,12 +36,12 @@
                                     {{$i->name}}
                                 </td>
                                 <td>
-                                    <a href="{{route('super-dashboard.awards.showSeasons', ['slug' => $i->slug])}}" target="_blank" class="btn btn-success">
+                                    <a href="{{route('super-dashboard.awards.showSeasons', ['slug' => $i->slug])}}" class="btn btn-success">
                                         <i class="far fa-eye"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{route('super-dashboard.awards.showSeasons', ['slug' => $i->slug])}}" target="_blank" class="btn btn-primary">
+                                    <a href="{{route('super-dashboard.awards.editAward', ['award_id' => $i->id, 'award_name' => $i->slug])}}" class="btn btn-primary">
                                         <i class="far fa-edit"></i>
                                     </a>
                                 </td>

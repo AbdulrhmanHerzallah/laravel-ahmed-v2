@@ -100,7 +100,20 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
     Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards'], function (){
         Route::get('/', ['as' => 'show', 'uses' => 'AwardsController@showAwards']);
         Route::get('/show-seasons/{slug}', ['as' => 'showSeasons', 'uses' => 'AwardsController@showSeasons']);
-        Route::get('/apps/{id}', ['as' => 'showApps', 'uses' => 'AwardsController@showApps']);
+        Route::get('/apps/{id}/award/{award_name}/season/{season_name}', ['as' => 'showApps', 'uses' => 'AwardsController@showApps']);
+
+        Route::get('/create-season/{award_id}/{award_name}', ['as' => 'createSeason', 'uses' => 'AwardsController@createSeason']);
+        Route::post('/store-season/{award_id}', ['as' => 'storeSeason', 'uses' => 'AwardsController@storeSeason']);
+        Route::get('/edit/{award_id}/{award_name}', ['as' => 'editAward', 'uses' => 'AwardsController@editAward']);
+        Route::post('/update/{award_id}', ['as' => 'updateAward', 'uses' => 'AwardsController@updateAward']);
+
+
+        Route::get('/show-app/{award_type}/{app_id}', ['as' => 'showApp', 'uses' => 'AwardsController@showApp']);
+
+
+        // ajax
+        Route::get('/nomination', ['as' => 'nomination', 'uses' => 'AwardsController@nomination']);
+        Route::get('/accepted', ['as' => 'accepted', 'uses' => 'AwardsController@accepted']);
         Route::get('/show-apps-data-table/{id}', ['as' => 'showAppsDataTable', 'uses' => 'AwardsController@showAppsDataTable']);
 
 

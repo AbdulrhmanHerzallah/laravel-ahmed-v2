@@ -17,9 +17,8 @@ class CreateApplicationsTable extends Migration
             $table->id();
 
             $table->string('cv_file')->nullable();
-            $table->string('award_type');
 
-            $table->enum('steps', ['one', 'two']);
+
             $table->boolean('is_accepted')->default(0);
             $table->boolean('nomination_status')->default(0);
 
