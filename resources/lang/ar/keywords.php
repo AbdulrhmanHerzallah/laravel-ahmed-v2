@@ -108,6 +108,10 @@ return [
     'edit.data.season' => 'تعديل بينات الموسم',
     'show.winners' => 'عرض الفائزين',
     'delete.season' => 'حذف الموسم',
-    'can.not.delete.season' => 'لا يمكن حذف الموسم لانه مرتبط بعدة طلبات سابقة!'
+    'can.not.delete.season' => 'لا يمكن حذف الموسم لانه مرتبط بعدة طلبات سابقة!',
+    'close' => 'اعلاق',
+    'user.info' => 'بينات المتسابق',
+    'center' => 'المركز',
+    'award.value' => 'قيمة الجائزة'
 
 ];

@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="p-5">
-        <a href="#" class="btn btn-success">{{__('keywords.select.winners.in.season')}}<i class="mx-2 fas fa-user-plus"></i></a>
+        <a href="{{route('super-dashboard.winner.createWinner', ['award_slug' => $awardSeasons->award->slug, 'season_slug' => $awardSeasons->slug])}}" class="btn btn-success">{{__('keywords.select.winners.in.season')}}<i class="mx-2 fas fa-user-plus"></i></a>
     </div>
     <div class="bg-white rounded p-5">
         <table id="apps">
@@ -32,19 +32,18 @@
 
     <div class="modal fade" id="user_info" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content modal-lg">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="modelTitle">{{__('keywords.user.info')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="modal-body" id="modelBody">
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('keywords.close')}}</button>
                 </div>
             </div>
         </div>
@@ -160,8 +159,24 @@
             let button = $(event.relatedTarget) // Button that triggered the modal
             let userInfo = button.data('user-info') // Extract info from data-* attributes
             let modal = $(this)
-            // modal.find('.modal-title').text('New message to ' + recipient)
-            // modal.find('.modal-body input').val(recipient)
+            modal.find('#modelBody').html(
+                `
+                     <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <td>{{__('keywords.user.name')}}</td>
+                            <td>${userInfo.name}</td>
+                        </tr>
+                             <tr>
+                            <td>{{__('keywords.email')}}</td>
+                            <td>${userInfo.email}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                `)
+
         })
     </script>
 @endsection
