@@ -12,8 +12,6 @@ use App\Models\AwardSeason;
 use App\Models\Application;
 use App\Models\Winner;
 
-use RealRashid\SweetAlert\Facades\Alert;
-
 class WinnersController extends Controller
 {
 
@@ -40,12 +38,38 @@ class WinnersController extends Controller
             ]);
     }
 
+
+
     public function storeWinner($award_id, $season_id, Request $request)
     {
+        $request->validate([
+            'user_id.*' => 'required',
+            'center.*' => 'required',
+            'award_value.*' => 'required'
+        ]);
 
-        // chek no duplicated must to work
+        $hasDuplicatesUsers = count($request->user_id) > count(array_unique($request->user_id));
+
+        if ($hasDuplicatesUsers)
+        {
+           return response(['duplicatedUserErrorMassage' => __('keywords.duplicatedUserErrorMassage'), 'alertWarning' => __('keywords.alertWarning')], 422);
+        }
 
         foreach ($request->user_id as $key => $id)
+        {
+
+           $userWinner = Winner::where(['user_id' => $id, 'award_id' => $award_id, 'award_season_id' => $season_id])
+               ->addSelect(['user_name' => User::select('name')->whereColumn('user_id', 'users.id')])
+               ->first();
+
+            if ($userWinner)
+            {
+                return response(['userInDatabase' => __('keywords.userInDatabase'), 'userData' => $userWinner], 422);
+            }
+        }
+
+        {
+            foreach ($request->user_id as $key => $id)
             {
                 Winner::create(
                     [
@@ -58,8 +82,27 @@ class WinnersController extends Controller
                     ]
                 );
             }
-        toast('تم تسجيل الفائزين بنجاح', 'success') ;
-        return redirect()->back();
+            return response(['success' => __('keywords.theWinnersIsStore')], 201);
+        }
     }
 
+
+    public function showWinners($award_slug, $season_slug)
+    {
+
+        $award = Award::where('slug', $award_slug)->firstOrFail();
+        $awardSeason = AwardSeason::where('slug', $season_slug)->firstOrFail();
+
+       $winners = Winner::orderBy('id', 'DESC')->where(['award_id' => $award->id, 'award_season_id' => $awardSeason->id])
+            ->addSelect(['creator' => User::select('name')->whereColumn('user_id', 'users.id')])
+            ->addSelect(['user_name' => User::select('name')->whereColumn('user_id', 'users.id')])
+            ->paginate(50);
+
+        return view('super-dashboard.awards.winners.show-winners',
+            [
+                'winners' => $winners,
+                'award' => $award,
+                'awardSeason' => $awardSeason
+            ]);
+    }
 }

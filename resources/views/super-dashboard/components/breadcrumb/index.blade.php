@@ -25,6 +25,8 @@
                 @endif
             @endforeach
         @endif
+
+            @yield('breadcrumb')
         </ol>
     </div>
     <div class="font-weight-bold" style="font-size: 16px">

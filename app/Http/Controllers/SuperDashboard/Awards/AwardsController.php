@@ -62,13 +62,11 @@ class AwardsController extends Controller
     public function showSeasons($slug)
     {
        $award = Award::with('awardSeasons')->where('slug', $slug)->first(['name', 'id', 'slug']);
-
        if ($award)
        {
            return view('super-dashboard.awards.show-award-seasons', ['award' => $award]);
        }
     }
-
 
     public function updateSeason($id, Request $request)
     {
@@ -226,7 +224,9 @@ class AwardsController extends Controller
     {
         return Application::with($relationship)
             ->addSelect(['award_name' => Award::select('name')->whereColumn('award_id', 'awards.id')->limit(1) ?? ''])
+            ->addSelect(['award_name_slug' => Award::select('slug')->whereColumn('award_id', 'awards.id')->limit(1) ?? ''])
             ->addSelect(['season_name' => AwardSeason::select('season_name')->whereColumn('award_season_id', 'award_seasons.id')->limit(1) ?? ''])
+            ->addSelect(['season_name_slug' => AwardSeason::select('slug')->whereColumn('award_season_id', 'award_seasons.id')->limit(1) ?? ''])
             ->findOrFail($app_id);
     }
 

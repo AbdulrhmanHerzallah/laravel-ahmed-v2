@@ -56,9 +56,9 @@
                                     </button>
                                 </td>
                                 <td>
-{{--                                    <a href="" class="btn btn-success">--}}
-{{--                                        <i class="far fa-eye"></i>--}}
-{{--                                    </a>--}}
+                                    <a href="{{route('super-dashboard.winner.showWinners', ['award_slug' => $award->slug, 'season_slug' => $i->slug])}}" class="btn btn-success">
+                                        <i class="far fa-eye"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

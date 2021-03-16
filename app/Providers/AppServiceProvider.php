@@ -28,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\TabSubject::observe(\App\Observers\TabSubjectObserver::class);
         \App\Models\Award::observe(\App\Observers\AwardObserver::class);
         \App\Models\AwardSeason::observe(\App\Observers\AwardSeasonObserver::class);
+        \App\Models\Winner::observe(\App\Observers\WinnerObserver::class);
     }
 }

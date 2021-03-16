@@ -112,6 +112,12 @@ return [
     'close' => 'اعلاق',
     'user.info' => 'بينات المتسابق',
     'center' => 'المركز',
-    'award.value' => 'قيمة الجائزة'
-
+    'award.value' => 'قيمة الجائزة',
+    'apps' => 'الطلبات',
+    'duplicatedUserErrorMassage' => 'يجب ان لا يكون الفائز مككر في عملية التسجيل',
+    'alertWarning' => 'لا يمكن اكمال الطلب',
+    'select.the.winners' => 'تحديد الفائزين',
+    'userInDatabase' => 'تم تسجيل المتسابق من قبل',
+    'theWinnersIsStore' => 'تم تسجيل المتسابقين بنجاح',
+    'ok' => 'موافق'
 ];

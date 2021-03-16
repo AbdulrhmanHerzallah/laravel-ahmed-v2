@@ -124,8 +124,8 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
 
     Route::group(['prefix' => 'winner', 'as' => 'winner.', 'namespace' => 'Awards'], function (){
         Route::get('/create-winners/award/{award_slug}/season/{season_slug}', ['as' => 'createWinner', 'uses' => 'WinnersController@createWinner']);
+        Route::get('/show-winners/{award_slug}/{season_slug}', ['as' => 'showWinners', 'uses' => 'WinnersController@showWinners']);
         Route::post('/store-winner/{award_id}/{season_id}', ['as' => 'storeWinner', 'uses' => 'WinnersController@storeWinner']);
-
     });
 
 
