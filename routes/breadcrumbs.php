@@ -205,3 +205,18 @@ Breadcrumbs::for('super-dashboard.contactUs.show', function (Trail $trail){
 });
 
 // end contact us
+
+
+// logo
+
+Breadcrumbs::for('super-dashboard.logoFoundation.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.logo.foundation'), route('super-dashboard.logoFoundation.show'));
+});
+
+Breadcrumbs::for('super-dashboard.logoFoundation.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.logoFoundation.show')
+        ->push(__('keywords.edit'));
+});
+
+// end logo

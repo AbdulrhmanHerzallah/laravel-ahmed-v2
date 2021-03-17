@@ -128,6 +128,12 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
             Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'ContactUsController@delete']);
         });
 
+        Route::group(['prefix' => 'logo-foundation', 'as' => 'logoFoundation.'], function () {
+            Route::get('/show', ['as' => 'show', 'uses' => 'LogoFoundationController@show']);
+            Route::get('/edit/{key}', ['as' => 'edit', 'uses' => 'LogoFoundationController@edit']);
+            Route::post('/update/{key}', ['as' => 'update', 'uses' => 'LogoFoundationController@update']);
+        });
+
 
 
         // end view
