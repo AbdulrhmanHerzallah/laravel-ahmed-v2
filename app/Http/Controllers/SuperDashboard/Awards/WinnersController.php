@@ -12,6 +12,9 @@ use App\Models\AwardSeason;
 use App\Models\Application;
 use App\Models\Winner;
 
+use App\Jobs\SendEmailAwardValueToWinnerJob;
+
+
 class WinnersController extends Controller
 {
 
@@ -71,7 +74,7 @@ class WinnersController extends Controller
         {
             foreach ($request->user_id as $key => $id)
             {
-                Winner::create(
+              $winner = Winner::create(
                     [
                         'user_id' => $id,
                         'center' => $request->center[$key],
@@ -81,6 +84,9 @@ class WinnersController extends Controller
                         'award_season_id' => $season_id
                     ]
                 );
+               $user = User::find($winner->user_id);
+               dispatch(new SendEmailAwardValueToWinnerJob($user, $winner, $request->message));
+
             }
             return response(['success' => __('keywords.theWinnersIsStore')], 201);
         }
@@ -96,7 +102,7 @@ class WinnersController extends Controller
        $winners = Winner::orderBy('id', 'DESC')->where(['award_id' => $award->id, 'award_season_id' => $awardSeason->id])
             ->addSelect(['creator' => User::select('name')->whereColumn('user_id', 'users.id')])
             ->addSelect(['user_name' => User::select('name')->whereColumn('user_id', 'users.id')])
-            ->paginate(50);
+            ->paginate(40);
 
         return view('super-dashboard.awards.winners.show-winners',
             [

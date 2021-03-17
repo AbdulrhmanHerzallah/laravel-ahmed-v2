@@ -6,16 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\AwardSeason;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
 use App\Models\Award;
 use App\Models\Application;
-
 use Yajra\DataTables\DataTables;
-
 use Illuminate\Support\Facades\File;
-
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class AwardsController extends Controller
 {

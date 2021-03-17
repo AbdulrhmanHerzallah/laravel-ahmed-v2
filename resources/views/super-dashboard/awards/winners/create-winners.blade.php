@@ -41,19 +41,27 @@
                     <div class="col-lg-4" id="div_center_0">
                         <label for="center">{{__('keywords.center')}}<span class="text-danger">*</span></label>
                         <input required name="center[]" id="center" type="text" class="form-control"
-                               value="{{old('center.0') ?? Session::get('inputs')['center'][0] ?? null}}"/>
+                               value="{{old('center.0')}}"/>
                     </div>
 
                     <div class="col-lg-4" id="div_award_value_0">
                         <label for="award_value">{{__('keywords.award.value')}}<span
                                 class="text-danger">*</span></label>
                         <input required name="award_value[]" id="award_value" type="text" class="form-control"
-                               value="{{old('award_value.0') ?? Session::get('inputs')['award_value'][0] ?? null}}"/>
+                               value="{{old('award_value.0')}}"/>
                     </div>
                 </div>
                 <button id="addHtmlRow" type="button" class="btn btn-success my-5">
                     <i class="fas fa-plus"></i>
                 </button>
+
+                <div class="form-group">
+                    <label for="massage">{{__('keywords.massage')}}<span class="text-danger">*</span></label>
+                    <textarea required name="message" id="massage" type="text" class="form-control">مبروك لقد ربحت في هذه المسابقة.</textarea>
+                    <small class="form-text text-muted">سيتم ارسال رسالة الي الفائزين وسيكون هذا الحقل محتوى الرسالة. تأكد من الكلمات والحروف.</small>
+
+                </div>
+
                 <div id="pertAddHtml">
 
                 </div>

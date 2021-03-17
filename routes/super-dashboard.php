@@ -93,7 +93,44 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
         // end old man images
 
 
-        // view
+        // last news
+        Route::group(['prefix' => 'last-news', 'as' => 'lastNews.'], function (){
+            Route::get('/show',   ['as' => 'show', 'uses' => 'LastNewsController@show']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'LastNewsController@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'LastNewsController@store']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'LastNewsController@update']);
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'LastNewsController@delete']);
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'LastNewsController@restore']);
+            Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'LastNewsController@forceDelete']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'LastNewsController@edit']);
+        });
+
+        // end news
+
+        // start ads
+
+        Route::group(['prefix' => 'last-ads', 'as' => 'lastAds.'], function (){
+            Route::get('/show',   ['as' => 'show', 'uses' => 'LastAdsController@show']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'LastAdsController@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'LastAdsController@store']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'LastAdsController@update']);
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'LastAdsController@delete']);
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'LastAdsController@restore']);
+            Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'LastAdsController@forceDelete']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'LastAdsController@edit']);
+        });
+        // end ads
+
+        Route::group(['prefix' => 'contact-us', 'as' => 'contactUs.'], function (){
+            Route::get('/show',   ['as' => 'show', 'uses' => 'ContactUsController@show']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'ContactUsController@delete']);
+        });
+
+
+
+        // end view
     });
 
     //******** start awards *********//

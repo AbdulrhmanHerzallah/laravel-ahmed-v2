@@ -136,7 +136,7 @@ Breadcrumbs::for('super-dashboard.awards.editAward', function (Trail $trail){
 
 Breadcrumbs::for('super-dashboard.awards.showSeasons', function (Trail $trail){
     $trail->parent('super-dashboard.awards.show')
-        ->push(__('keywords.the.seasons'), route('super-dashboard.awards.showSeasons', ['slug' => request()->route()->parameters()['award_name'] ?? '-']));
+        ->push(__('keywords.the.seasons'), route('super-dashboard.awards.showSeasons', ['slug' => request()->route()->parameters()['award_name'] ?? request()->route()->parameters()['award_slug'] ?? '-']));
 });
 
 Breadcrumbs::for('super-dashboard.awards.createSeason', function (Trail $trail){
@@ -150,10 +150,58 @@ Breadcrumbs::for('super-dashboard.awards.showApps', function (Trail $trail){
 });
 
 
-//Breadcrumbs::for('super-dashboard.awards.showApp', function (Trail $trail){
-//    $trail->parent('super-dashboard.awards.showApps')
-//        ->push(__('keywords.app'));
-//});
-
+Breadcrumbs::for('super-dashboard.winner.showWinners', function (Trail $trail){
+    $trail->parent('super-dashboard.awards.showSeasons')
+        ->push(__('keywords.applications'));
+});
 
 // end awards
+
+
+// start last news
+Breadcrumbs::for('super-dashboard.lastNews.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.last.news'), route('super-dashboard.lastNews.show'));
+});
+
+Breadcrumbs::for('super-dashboard.lastNews.create', function (Trail $trail){
+    $trail->parent('super-dashboard.lastNews.show')
+        ->push(__('keywords.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.lastNews.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.lastNews.show')
+        ->push(__('keywords.edit'));
+});
+
+// end last news
+
+// start ads
+Breadcrumbs::for('super-dashboard.lastAds.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.last.ads'), route('super-dashboard.lastAds.show'));
+});
+
+Breadcrumbs::for('super-dashboard.lastAds.create', function (Trail $trail){
+    $trail->parent('super-dashboard.lastAds.show')
+        ->push(__('keywords.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.lastAds.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.lastAds.show')
+        ->push(__('keywords.edit'));
+});
+
+// end ads
+
+// contact us
+
+
+Breadcrumbs::for('super-dashboard.contactUs.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.show.messages'));
+});
+
+// end contact us

@@ -12,15 +12,19 @@ class WinnerMail extends Mailable
     use Queueable, SerializesModels;
 
     public $winner;
+    public $user;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($winner)
+    public function __construct($winner, $user, $message)
     {
         $this->winner = $winner;
+        $this->user = $user;
+        $this->message = $message;
     }
 
     /**
@@ -30,6 +34,7 @@ class WinnerMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('Super-dashboard/emails/WinnerMessage');
+        return $this->markdown('Super-dashboard/emails/WinnerMessage')
+            ->with(['winner' => $this->winner, 'user' => $this->user, 'message' => $this->message]);
     }
 }
