@@ -33,7 +33,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="image">{{__('keywords.image')}}<span class="text-danger">*</span></label>
+                    <label for="image">{{__('keywords.image')}}</label>
                     <div class="d-flex justify-content-between">
                         <input name="image" id="image" type="file">
                         @if($tabSubject->image)
@@ -48,7 +48,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="video">{{__('keywords.video')}}<span class="text-danger">*</span></label>
+                    <label for="video">{{__('keywords.video')}}</label>
                     <div class="d-flex justify-content-between">
                         <input name="video" id="video" type="file">
                         @if($tabSubject->video)

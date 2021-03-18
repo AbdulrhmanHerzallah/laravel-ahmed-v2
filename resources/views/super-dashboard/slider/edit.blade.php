@@ -34,7 +34,7 @@
                         {{$message}}
                     </div>
                     @enderror
-                    <label for="image">الصور<span class="text-danger">*</span></label>
+                    <label for="image">{{__('keywords.image')}}<span class="text-danger">*</span></label>
                     <div class="d-flex justify-content-between">
                         <input name="image" id="image" type="file">
                         <img height="100" width="100" class="img-fluid" src="{{$slider->image}}" alt="">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary mr-2">حفظ</button>
+                <button type="submit" class="btn btn-primary mr-2">{{__('keywords.save')}}</button>
             </div>
         </form>
     </div>

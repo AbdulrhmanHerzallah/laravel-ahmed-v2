@@ -44,24 +44,24 @@
                     <h4 class="menu-text">Custom</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.slider.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('slider', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.slider.show')}}" class="menu-link menu-toggle">
                         <span class="menu-text"><i class="nav-icon fas fa-columns mx-3"></i>{{__('keywords.slider')}}</span></a></li>
 
 
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.aboutAhmed.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('about-ahmed', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.aboutAhmed.show')}}" class="menu-link menu-toggle"><span class="menu-text"><i class="nav-icon fas fa-male mx-4"></i>{{__('keywords.about.ahmad')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.aboutFoundation.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('about-foundation', request()->segments())) menu-item-open @endif " aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.aboutFoundation.show')}}" class="menu-link menu-toggle"><span class="menu-text"><i class="nav-icon far fa-building mx-3"></i>{{__('keywords.about.foundation')}}</span></a></li>
                 <li class="menu-section ">
                     <h4 class="menu-text">{{__('keywords.old.man.museum')}}</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.oldManMemoryVideos.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-memory-videos', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.oldManMemoryVideos.show')}}" class="menu-link menu-toggle"><i class="fas fa-video mx-3"></i><span class="menu-text">{{__('keywords.old.man.memory.videos')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.oldManStuff.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-stuff', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.oldManStuff.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-couch"></i><span class="menu-text">{{__('keywords.old.stuff')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.oldManImages.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-images', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.oldManImages.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-camera-retro"></i><span class="menu-text">{{__('keywords.old.man.images')}}</span></a></li>
 
                 <li class="menu-section ">
@@ -69,7 +69,7 @@
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
 
-                <li class="menu-item @if(route('super-dashboard.awards.show') == url()->current()) menu-item-open @endif" aria-haspopup="true">
+                <li class="menu-item @if(in_array('awards', request()->segments())) menu-item-open @endif" aria-haspopup="true">
                     <a href="{{route('super-dashboard.awards.show')}}" class="menu-link">
 
                         <span class="menu-text"><i class="nav-icon fas fa-gift mx-3"></i> {{__('keywords.awards')}}</span></a></li>
@@ -77,10 +77,13 @@
                     <h4 class="menu-text">{{__('keywords.news.center')}}</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.lastNews.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastNews.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-newspaper"></i><span class="menu-text">{{__('keywords.last.news')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.lastAds.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastAds.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-ad"></i><span class="menu-text">{{__('keywords.last.ads')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.contactUs.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.contactUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 far fa-envelope"></i><span class="menu-text">{{__('keywords.contact.us')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(route('super-dashboard.logoFoundation.show') == url()->current()) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.logoFoundation.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fab fa-galactic-republic"></i><span class="menu-text">{{__('keywords.logo.foundation')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('last-news', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastNews.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-newspaper"></i><span class="menu-text">{{__('keywords.last.news')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('last-ads', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastAds.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-ad"></i><span class="menu-text">{{__('keywords.last.ads')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('contact-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.contactUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 far fa-envelope"></i><span class="menu-text">{{__('keywords.contact.us')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('logo-foundation', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.logoFoundation.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fab fa-galactic-republic"></i><span class="menu-text">{{__('keywords.logo.foundation')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('they-said-about-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.theySaidAboutUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-microphone-alt"></i><span class="menu-text">{{__('keywords.they.said.about.us')}}</span></a></li>
+                <li class="menu-item  menu-item-submenu @if(in_array('images-show', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.imagesShow.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-microphone-alt"></i><span class="menu-text">{{__('keywords.images.show')}}</span></a></li>
+
 
                 <li class="menu-section ">
                     <h4 class="menu-text">Features</h4>

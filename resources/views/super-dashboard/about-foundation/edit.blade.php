@@ -31,12 +31,12 @@
                               id="body">{{old('body', $tabSubject->body)}}</textarea>
                 </div>
 
-                <div class="form-group">
-                    <div class="mb-3 form-check">
-                        <input @if(old('deleteImage')) checked @endif name="deleteImage" type="checkbox" class="form-check-input" id="deleteImage">
-                        <label class="form-check-label" for="deleteImage">{{__('keywords.delete.image')}}</label>
-                    </div>
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <div class="mb-3 form-check">--}}
+{{--                        <input @if(old('deleteImage')) checked @endif name="deleteImage" type="checkbox" class="form-check-input" id="deleteImage">--}}
+{{--                        <label class="form-check-label" for="deleteImage">{{__('keywords.delete.image')}}</label>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="form-group">
                     @error('image')

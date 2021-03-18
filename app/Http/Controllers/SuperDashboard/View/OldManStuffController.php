@@ -28,6 +28,8 @@ class OldManStuffController extends Controller
 
     public function store(Request $request)
     {
+        $tabSubject = TabSubject::create($request->except(['images', 'videos']));
+        $tab = Tab::where('key', 'old_man_stuff')->first();
 
         if ($request->has('images') || $request->has('videos'))
         {
@@ -39,9 +41,7 @@ class OldManStuffController extends Controller
                 'videos.*' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
             ]);
 
-            $tab = Tab::where('key', 'old_man_stuff')->first();
 
-            $tabSubject = TabSubject::create($request->except(['images', 'videos']));
             $tabSubject->tab()->associate($tab)->save();
 
             if ($request->hasFile('images'))
@@ -50,7 +50,7 @@ class OldManStuffController extends Controller
                 {
                     $fileName = Carbon::now()->timestamp.'-'.$image->getClientOriginalName();
                     $image->move(public_path('images'), $fileName);
-                    File::create(['path' => '/images/'.$fileName, 'file_type' => 'video'])->fileable()->associate($tabSubject)->save();
+                    File::create(['path' => '/images/'.$fileName, 'file_type' => 'image'])->fileable()->associate($tabSubject)->save();
                 }
             }
 
@@ -68,7 +68,7 @@ class OldManStuffController extends Controller
             return redirect()->back();
         }
 
-        Alert::info('يجب ان يكون احدهما موجود! (الصور او الفديو)');
+        Alert::info(__('keywords.must.have.video.or.images'));
         return redirect()->back();
     }
 
@@ -79,7 +79,7 @@ class OldManStuffController extends Controller
     }
 
 
-    public function update($id, Request $request)
+    public function update($id, Request $request, TabSubjectHelperModel $helperModel)
     {
 
         $request->validate([
@@ -90,73 +90,7 @@ class OldManStuffController extends Controller
             'videos' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
         ]);
 
-
-       if ($request->has('files_id'))
-       {
-           foreach ($request->files_id as $file) {
-            $file = File::find($file);
-            if (!$file) {
-                continue;}
-
-             if (FileSystem::exists(public_path($file->path))) {
-                 FileSystem::delete(public_path($file->path));
-             }
-               $file->delete();
-           }
-       }
-
-       $tabSubject = TabSubject::withTrashed()->findOrFail($id);
-
-       if ($request->hasFile('images'))
-       {
-           foreach ($tabSubject->files as $file)
-             if (FileSystem::exists(public_path($file->path)))
-             {
-                 FileSystem::delete(public_path($file->path));
-             }
-
-           $tabSubject->files()->where('file_type', 'image')->delete();
-       }
-
-        if ($request->hasFile('videos'))
-        {
-            foreach ($tabSubject->files as $file)
-                if (FileSystem::exists(public_path($file->path)))
-                {
-                    FileSystem::delete(public_path($file->path));
-                }
-
-            $tabSubject->files()->where('file_type', 'video')->delete();
-        }
-
-       $tabSubject->update($request->except(['files_id', 'images', 'videos']));
-
-        if ($request->hasFile('images'))
-        {
-            foreach ($request->file('images') as $image)
-            {
-               $fileName = Carbon::now()->timestamp.'-'.$image->getClientOriginalName();
-               $image->move(public_path('images'), $fileName);
-
-               File::create(['path' => '/images/'.$fileName, 'file_type' => 'image'])->fileable()->associate($tabSubject)->save();
-            }
-        }
-
-        if ($request->hasFile('videos'))
-        {
-            foreach ($request->file('videos') as $image)
-            {
-                $fileName = Carbon::now()->timestamp.'-'.$image->getClientOriginalName();
-                $image->move(public_path('videos'), $fileName);
-
-                File::create(['path' => '/videos/'.$fileName, 'file_type' => 'video'])->fileable()->associate($tabSubject)->save();
-            }
-        }
-
-      $tabSubject->save();
-
-      toast(__('keywords.update.well.done'), 'success');
-      return redirect()->back();
+        return $helperModel->update($id, $request);
     }
 
     public function edit($id)

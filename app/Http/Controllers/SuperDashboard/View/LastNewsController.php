@@ -65,7 +65,7 @@ class LastNewsController extends Controller
     }
 
 
-    public function update($id, Request $request)
+    public function update($id, Request $request, TabSubjectHelperModel $tabSubjectHelperModel)
     {
 
         $request->validate([
@@ -75,51 +75,7 @@ class LastNewsController extends Controller
             'images.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $tabSubject = TabSubject::withTrashed()->findOrFail($id);
-
-        $tabSubject->update($request->except(['images', 'files', 'files_id']));
-
-
-        if ($request->has('files_id'))
-        {
-            foreach ($request->files_id as $file) {
-                $file = File::find($file);
-                if (!$file) {
-                    continue;}
-
-                if (FileSystem::exists(public_path($file->path))) {
-                    FileSystem::delete(public_path($file->path));
-                }
-                $file->delete();
-            }
-        }
-
-
-        if ($request->hasFile('images'))
-        {
-
-            foreach ($tabSubject->files as $file)
-            {
-                if (FileSystem::exists(public_path($file->path)))
-                {
-                    FileSystem::delete(public_path($file->path));
-                }
-            }
-
-            $tabSubject->files()->delete();
-
-            foreach ($request->file('images') as $image)
-            {
-                $imageName = Carbon::now()->timestamp.'-'.$image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName);
-
-                File::create(['path' => '/images/'.$imageName, 'file_type' => 'image'])->fileable()->associate($tabSubject)->save();
-
-            }
-        }
-
-        toast(__('keywords.create.successfully'), 'success');
-        return redirect()->back();
+        return $tabSubjectHelperModel->update($id, $request);
     }
 
 

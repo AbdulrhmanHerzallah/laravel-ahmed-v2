@@ -135,6 +135,24 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
         });
 
 
+        Route::group(['prefix' => 'they-said-about-us', 'as' => 'theySaidAboutUs.'], function (){
+            Route::get('/show', ['as' => 'show', 'uses' => 'TheySaidAboutUs@show']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'TheySaidAboutUs@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'TheySaidAboutUs@store']);
+
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'TheySaidAboutUs@edit']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'TheySaidAboutUs@update']);
+
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'TheySaidAboutUs@delete']);
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'TheySaidAboutUs@restore']);
+            Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'TheySaidAboutUs@forceDelete']);
+        });
+
+        Route::group(['prefix' => 'images-show', 'as' => 'imagesShow.'], function (){
+            Route::get('/show', ['as' => 'show', 'uses' => 'ImagesShowController@show']);
+        });
+
 
         // end view
     });

@@ -1,4 +1,4 @@
-@extends('super-dashboard.index', ['title' => __('keywords.old.stuff')])
+@extends('super-dashboard.index', ['title' => __('keywords.old.man.images')])
 
 @section('head')
     <style>
@@ -12,7 +12,7 @@
 @section('content')
     <div class="card card-custom gutter-b example example-compact">
         <div class="card-header">
-            <h3 class="card-title">{{__('keywords.old.stuff.create')}}</h3>
+            <h3 class="card-title">{{__('keywords.old.man.images').' | '. __('keywords.create')}}</h3>
         </div>
         <form action="{{route('super-dashboard.oldManImages.update', ['id' => $tabSubject->id])}}" method="post" enctype="multipart/form-data" class="form">
             <div class="card-body">
@@ -56,10 +56,6 @@
                     <label for="body">{{__('keywords.body')}}</label>
                     <textarea class="form-control summernote" id="body" name="body">{{old('body',$tabSubject->body)}}</textarea>
                 </div>
-                <div class="alert alert-warning" role="alert">
-                    {{__('keywords.note.all.files.delete')}}
-                </div>
-
                 <div class="form-group">
                     @error('images')
                     <div class="alert alert-danger">
@@ -68,8 +64,12 @@
                     @enderror
                     <label for="images">{{__('keywords.images')}}</label>
                     <div>
-                        <input multiple name="images[]" id="images" type="file">
+                        <input multiple accept=".gif,.jpg,.jpeg,.png" name="images[]" id="images" type="file">
                     </div>
+                </div>
+
+                <div class="alert alert-warning">
+                    {{__('keywords.first.delete')}}
                 </div>
                 <table class="table">
                     <caption>{{__('keywords.previous.subjects')}}</caption>
@@ -77,7 +77,9 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">{{__('keywords.files')}}</th>
+                        <th scope="col">{{__('keywords.replacing.file')}}</th>
                         <th scope="col">{{__('keywords.delete')}}</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -93,9 +95,22 @@
                                     </video>
                                 </td>
                             @endif
+
                             <td>
-                                <input type="checkbox" name="files_id[]" value="{{$file->id}}">
+                                <input type="file" name="files[]"
+                                       @if($file->file_type == 'image')
+                                       accept=".gif,.jpg,.jpeg,.png"
+                                       @elseif($file->file_type == 'video')
+                                       accept=".mp4,.ogx,.oga,.ogv,.ogg,.webm"
+                                    @endif
+                                >
+                                <input type="hidden" name="files_id[]" value="{{$file->id}}">
                             </td>
+
+                            <td>
+                                <input type="checkbox" name="checkout_delete[]" value="{{$file->id}}">
+                            </td>
+
                         </tr>
                     @endforeach
                     </tbody>

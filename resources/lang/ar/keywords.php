@@ -140,5 +140,10 @@ return [
     'logo.foundation' => 'شعار المؤسسة',
     'size' => 'الحجم',
     'big.logo' => 'الكبيرة(500x 500)',
-    'small.logo' => 'الصغير (خاص للهواتف)(250x 250)'
+    'small.logo' => 'الصغير (خاص للهواتف)(250x 250)',
+    'they.said.about.us' => 'قالو عن الؤسسة',
+    'must.have.video.or.images' => 'يجب ان يكون احدهما موجود! (الصور او الفديو)',
+    'replacing.file' => 'استبدال الملف',
+    'first.delete' => 'الاولوية للحذف',
+    'images.show' => 'معرض الصور'
 ];

@@ -65,6 +65,11 @@ Breadcrumbs::for('super-dashboard.oldManMemoryVideos.edit', function (Trail $tra
         ->push(__('breadcrumbs.edit'));
 });
 
+Breadcrumbs::for('super-dashboard.oldManMemoryVideos.create', function (Trail $trail){
+    $trail->parent('super-dashboard.oldManMemoryVideos.show')
+        ->push(__('keywords.create'));
+});
+
 // end memory old
 
 
@@ -208,7 +213,6 @@ Breadcrumbs::for('super-dashboard.contactUs.show', function (Trail $trail){
 
 
 // logo
-
 Breadcrumbs::for('super-dashboard.logoFoundation.show', function (Trail $trail){
     $trail->parent('super-dashboard.index')
         ->push(__('keywords.logo.foundation'), route('super-dashboard.logoFoundation.show'));
@@ -218,5 +222,25 @@ Breadcrumbs::for('super-dashboard.logoFoundation.edit', function (Trail $trail){
     $trail->parent('super-dashboard.logoFoundation.show')
         ->push(__('keywords.edit'));
 });
-
 // end logo
+
+
+// start they sey about us
+
+Breadcrumbs::for('super-dashboard.theySaidAboutUs.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.they.said.about.us'), route('super-dashboard.theySaidAboutUs.show'));
+});
+
+Breadcrumbs::for('super-dashboard.theySaidAboutUs.create', function (Trail $trail){
+    $trail->parent('super-dashboard.theySaidAboutUs.show')
+        ->push(__('keywords.create'));
+});
+
+Breadcrumbs::for('super-dashboard.theySaidAboutUs.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.theySaidAboutUs.show')
+        ->push(__('keywords.create'));
+});
+
+
+// end they sty say about us

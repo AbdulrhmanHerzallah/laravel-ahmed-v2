@@ -57,7 +57,7 @@ class OldManMemoryVideosController extends Controller
     }
 
 
-    public function update($id, Request $request)
+    public function update($id, Request $request, TabSubjectHelperModel $tabSubjectHelperModel)
     {
         $request->validate([
             'title' => 'required',
@@ -66,28 +66,7 @@ class OldManMemoryVideosController extends Controller
             'video' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
         ]);
 
-        $tabSubject = TabSubject::withTrashed()->findOrFail($id);
-
-        $tabSubject->update($request->except(['image']));
-
-        if ($request->hasFile('video'))
-        {
-            if (File::exists(public_path($tabSubject->video)))
-            {
-                File::delete(public_path($tabSubject->video));
-            }
-
-            $fileName = Carbon::now()->timestamp.'-'.$request->file('video')->getClientOriginalName();
-            $request->file('video')->move(public_path('videos'), $fileName);
-
-            $tabSubject->video = '/videos/'.$fileName;
-
-        }
-        $tabSubject->save();
-        toast(__('keywords.update.well.done'), 'success');
-
-        return redirect()->back();
-
+        return $tabSubjectHelperModel->update($id, $request);
     }
 
 
