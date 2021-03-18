@@ -79,7 +79,6 @@
                         <th scope="col">{{__('keywords.files')}}</th>
                         <th scope="col">{{__('keywords.replacing.file')}}</th>
                         <th scope="col">{{__('keywords.delete')}}</th>
-
                     </tr>
                     </thead>
                     <tbody>

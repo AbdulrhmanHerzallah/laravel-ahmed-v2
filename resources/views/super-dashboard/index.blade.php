@@ -3,6 +3,13 @@
 <head>
     @include('super-dashboard.components.head.index')
     @yield('head')
+    <style>
+        @media screen and (max-width: 991px) {
+            .container {
+                margin-top: 20px !important;
+            }
+        }
+    </style>
 </head>
 
 <body id="kt_body"

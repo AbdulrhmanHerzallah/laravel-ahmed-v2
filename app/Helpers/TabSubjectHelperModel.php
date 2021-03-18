@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Tab;
 use App\Models\TabSubject;
 
 use Carbon\Carbon;
@@ -109,6 +110,24 @@ class TabSubjectHelperModel{
         $tabSubject->update($request->except(['files_id', 'files', 'images', 'videos', 'checkout_delete']));
         $tabSubject->save();
         toast(__('keywords.update.well.done'), 'success');
+        return redirect()->back();
+
+    }
+
+
+    public function storeShows($request, $key, $file_dir, $file_type)
+    {
+        $tab = Tab::where('key', $key)->first();
+        $tabSubject = TabSubject::create(['title' => $request->title]);
+
+        $tabSubject->tab()->associate($tab)->save();
+
+        foreach ($request->file($file_dir) as $file) {
+            $fileName = Carbon::now()->timestamp . '-' . $file->getClientOriginalName();
+            $file->move(public_path($file_dir), $fileName);
+            File::create(['path' => '/'.$file_dir.'/' . $fileName, 'file_type' => $file_type])->fileable()->associate($tabSubject)->save();
+        }
+        toast(__('keywords.create.successfully'), 'success');
         return redirect()->back();
 
     }

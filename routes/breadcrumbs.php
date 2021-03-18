@@ -242,5 +242,48 @@ Breadcrumbs::for('super-dashboard.theySaidAboutUs.edit', function (Trail $trail)
         ->push(__('keywords.create'));
 });
 
-
 // end they sty say about us
+
+
+// image show
+Breadcrumbs::for('super-dashboard.imagesShow.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.images.show'), route('super-dashboard.imagesShow.show'));
+});
+
+Breadcrumbs::for('super-dashboard.imagesShow.create', function (Trail $trail){
+    $trail->parent('super-dashboard.imagesShow.show')
+        ->push(__('keywords.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.imagesShow.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.imagesShow.show')
+        ->push(__('keywords.edit'));
+});
+
+// end images show
+
+
+// videos show
+Breadcrumbs::for('super-dashboard.videosShow.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.videos.show'), route('super-dashboard.videosShow.show'));
+});
+
+Breadcrumbs::for('super-dashboard.videosShow.create', function (Trail $trail){
+    $trail->parent('super-dashboard.videosShow.show')
+        ->push(__('keywords.create'));
+});
+
+
+Breadcrumbs::for('super-dashboard.videosShow.edit', function (Trail $trail){
+    $trail->parent('super-dashboard.videosShow.show')
+        ->push(__('keywords.edit'));
+});
+// end videos show
+
+Breadcrumbs::for('super-dashboard.UsersPermission.show', function (Trail $trail){
+    $trail->parent('super-dashboard.index')
+        ->push(__('keywords.permissions'));
+});

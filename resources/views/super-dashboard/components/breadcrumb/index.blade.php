@@ -30,6 +30,6 @@
         </ol>
     </div>
     <div class="font-weight-bold" style="font-size: 16px">
-        {{$title ?? ''}}
+        {{$title ?? __('breadcrumbs.dashboard')}}
     </div>
 </nav>

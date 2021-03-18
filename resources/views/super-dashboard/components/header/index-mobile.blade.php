@@ -1,7 +1,7 @@
 <div id="kt_header_mobile" class="header-mobile align-items-center  header-mobile-fixed ">
     <!--begin::Logo-->
     <a href="index.html">
-        <img alt="Logo" src="/assets/super-dashboard/assets/media/logos/logo-light.png"/>
+        <img alt="Logo" src="/assets/image/logo.png"/>
     </a>
     <!--end::Logo-->
 

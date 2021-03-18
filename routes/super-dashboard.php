@@ -2,9 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], function (){
+Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'middleware' => ['auth', 'is_admin']], function (){
 
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
+
+//    Route::get('/login', ['as' => 'login', 'uses' => 'Users\PermissionsController@login']);
+
+        Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users'], function (){
+            Route::get('/show', ['as' => 'show', 'uses' => 'PermissionsController@show']);
+
+
+    });
 
 
     Route::group(['namespace' => 'View'], function (){
@@ -151,6 +159,26 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard'], func
 
         Route::group(['prefix' => 'images-show', 'as' => 'imagesShow.'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'ImagesShowController@show']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'ImagesShowController@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'ImagesShowController@store']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'ImagesShowController@edit']);
+
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'ImagesShowController@restore']);
+            Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'ImagesShowController@forceDelete']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'ImagesShowController@delete']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'ImagesShowController@update']);
+        });
+
+        Route::group(['prefix' => 'videos-show', 'as' => 'videosShow.'], function (){
+            Route::get('/show', ['as' => 'show', 'uses' => 'VideosShowController@show']);
+            Route::get('/create', ['as' => 'create', 'uses' => 'VideosShowController@create']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'VideosShowController@store']);
+            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'VideosShowController@edit']);
+
+            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'VideosShowController@restore']);
+            Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'VideosShowController@forceDelete']);
+            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'VideosShowController@delete']);
+            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'VideosShowController@update']);
         });
 
 

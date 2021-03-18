@@ -145,5 +145,8 @@ return [
     'must.have.video.or.images' => 'يجب ان يكون احدهما موجود! (الصور او الفديو)',
     'replacing.file' => 'استبدال الملف',
     'first.delete' => 'الاولوية للحذف',
-    'images.show' => 'معرض الصور'
+    'images.show' => 'معرض الصور',
+    'videos.show' => 'معرض الفديو',
+    'permissions' => 'الصلاحيات',
+    'logout' => 'تسجيل الخروج'
 ];
