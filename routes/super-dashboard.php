@@ -186,7 +186,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
     });
 
     //******** start awards *********//
-    Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards'], function (){
+    Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards', 'middleware' => ['role_or_permission:award|free|poet|writer|personality']], function (){
         Route::get('/', ['as' => 'show', 'uses' => 'AwardsController@showAwards']);
         Route::get('/show-seasons/{slug}', ['as' => 'showSeasons', 'uses' => 'AwardsController@showSeasons']);
         Route::get('/apps/{id}/award/{award_name}/season/{season_name}', ['as' => 'showApps', 'uses' => 'AwardsController@showApps']);

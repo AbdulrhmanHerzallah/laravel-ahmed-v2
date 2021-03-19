@@ -24,13 +24,14 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">اسم الجائزة</th>
+                            <th scope="col">{{__('keywords.award.name')}}</th>
                             <th scope="col">عرض المواسم</th>
                             <th scope="col">تعديل محتويات الجائزة</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($awards as $i)
+                            @can($i->award_type)
                             <tr>
                                 <td>
                                     {{$i->name}}
@@ -46,6 +47,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endcan
                         @endforeach
                         </tbody>
                     </table>

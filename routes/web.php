@@ -20,3 +20,12 @@ Route::get('/', function () {
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
+
+
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+Route::get('/test', function (){
+    $role = Role::where('name', 'award')->first() ?? null;
+    dd($role->permissions);
+});

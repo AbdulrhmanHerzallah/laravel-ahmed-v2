@@ -16,7 +16,7 @@ class AwardsController extends Controller
 {
     public function showAwards()
     {
-       $awards = Award::all(['name', 'slug', 'id']);
+       $awards = Award::all(['name', 'slug', 'id', 'award_type']);
        return view('super-dashboard.awards.show-awards', ['awards' => $awards]);
     }
 
@@ -56,11 +56,13 @@ class AwardsController extends Controller
 
     public function showSeasons($slug)
     {
-       $award = Award::with('awardSeasons')->where('slug', $slug)->first(['name', 'id', 'slug']);
-       if ($award)
-       {
-           return view('super-dashboard.awards.show-award-seasons', ['award' => $award]);
-       }
+      $award = Award::with('awardSeasons')->where('slug', $slug)->firstOrFail(['name', 'id', 'slug', 'award_type']);
+      $per = auth()->user()->can($award->award_type);
+      if ($per)
+      {
+        return view('super-dashboard.awards.show-award-seasons', ['award' => $award]);
+      }
+      abort(403);
     }
 
     public function updateSeason($id, Request $request)
