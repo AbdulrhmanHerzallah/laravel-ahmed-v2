@@ -179,8 +179,8 @@ return [
         //-------------------------------------------------------
         Yajra\DataTables\DataTablesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-//        App\Providers\BreadcrumbsServiceProvider::class,
+//        Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\BreadcrumbsServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
     ],
 
