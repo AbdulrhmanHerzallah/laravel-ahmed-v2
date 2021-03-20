@@ -8,10 +8,9 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
 
 //    Route::get('/login', ['as' => 'login', 'uses' => 'Users\PermissionsController@login']);
 
-        Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users'], function (){
+        Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users', 'middleware' => 'role:permissions'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'PermissionsController@show']);
-
-
+            Route::post('/store', ['as' => 'store', 'uses' => 'PermissionsController@store']);
     });
 
 

@@ -18,16 +18,17 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $awardRole = Role::create(['name' => 'award']);
+//        $awardRole = Role::create(['name' => 'award']);
+//
+//        $freePer = Permission::create(['name' => 'free']);
+//        $writerPer = Permission::create(['name' => 'writer']);
+//        $poetPer = Permission::create(['name' => 'poet']);
+//        $personalityPer = Permission::create(['name' => 'personality']);
+//
+//        $awardRole->syncPermissions(['free', 'writer', 'poet', 'personality']);
 
-        $freePer = Permission::create(['name' => 'free']);
-        $writerPer = Permission::create(['name' => 'writer']);
-        $poetPer = Permission::create(['name' => 'poet']);
-        $personalityPer = Permission::create(['name' => 'personality']);
 
-
-
-        $awardRole->syncPermissions(['free', 'writer', 'poet', 'personality']);
+        $permissionsRole = Role::create(['name' => 'permissions']);
 
     }
 }

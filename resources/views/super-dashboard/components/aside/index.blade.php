@@ -95,8 +95,13 @@
                     <h4 class="menu-text"></h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
+                @role('permissions')
                 <li class="menu-item  menu-item-submenu @if(in_array('permissions', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.UsersPermission.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-user-cog"></i><span class="menu-text">{{__('keywords.permissions')}}</span></a></li>
+                @endrole
             </ul>
+            <br/><br/><br/><br/>
+            <br/><br/><br/><br/>
+            <br/><br/><br/><br/>
             <!--end::Menu Nav-->
         </div>
         <!--end::Menu Container-->
