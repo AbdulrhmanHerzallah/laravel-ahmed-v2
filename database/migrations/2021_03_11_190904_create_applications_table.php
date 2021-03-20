@@ -26,7 +26,7 @@ class CreateApplicationsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('award_season_id')->index();
-            $table->foreign('award_season_id')->references('id')->on('season_awards');
+            $table->foreign('award_season_id')->references('id')->on('award_seasons');
 
             $table->unsignedBigInteger('award_id')->index();
             $table->foreign('award_id')->references('id')->on('awards');
