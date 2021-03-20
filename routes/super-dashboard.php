@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::group(['as' => 'super.auth.', 'namespace' => 'SuperDashboard\Users'], function (){
+    Route::get('login', ['as' => 'login', 'uses' => 'AuthController@indexLogin']);
+});
+
+
 Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'middleware' => ['auth', 'is_admin']], function (){
-
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
-
-//    Route::get('/login', ['as' => 'login', 'uses' => 'Users\PermissionsController@login']);
 
         Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users', 'middleware' => 'role:permissions'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'PermissionsController@show']);
@@ -15,9 +18,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
 
 
     Route::group(['namespace' => 'View'], function (){
-
         // slider
-
         Route::group(['prefix' => 'slider', 'as' => 'slider.'], function (){
             Route::get('/', ['as' => 'show', 'uses' => 'SliderController@show']);
             Route::get('/create-slider', ['as' => 'create', 'uses' => 'SliderController@create']);

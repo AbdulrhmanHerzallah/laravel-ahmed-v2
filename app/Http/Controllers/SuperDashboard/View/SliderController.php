@@ -84,12 +84,13 @@ class SliderController extends Controller
 
     public function forceDelete($id)
     {
-       $slider = Slider::withTrashed()->find($id)->forceDelete();
+       $slider = Slider::withTrashed()->find($id);
 
        if (File::exists(public_path($slider->image)))
        {
            File::delete(public_path($slider->image));
        }
+       $slider->forceDelete();
 
         toast(__('keywords.slider.message.forceDelete'), 'success');
         return redirect()->back();

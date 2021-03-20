@@ -31,6 +31,13 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Fortify::loginView(function () {
+            return view('super-dashboard.auth.login');
+        });
+
+
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
