@@ -40,10 +40,6 @@
             data-menu-scroll="1" data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav ">
-                <li class="menu-section ">
-                    <h4 class="menu-text">Custom</h4>
-                    <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
                 <li class="menu-item  menu-item-submenu @if(in_array('slider', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.slider.show')}}" class="menu-link menu-toggle">
                         <span class="menu-text"><i class="nav-icon fas fa-columns mx-3"></i>{{__('keywords.slider')}}</span></a></li>
@@ -53,16 +49,26 @@
                         href="{{route('super-dashboard.aboutAhmed.show')}}" class="menu-link menu-toggle"><span class="menu-text"><i class="nav-icon fas fa-male mx-4"></i>{{__('keywords.about.ahmad')}}</span></a></li>
                 <li class="menu-item  menu-item-submenu @if(in_array('about-foundation', request()->segments())) menu-item-open @endif " aria-haspopup="true" data-menu-toggle="hover"><a
                         href="{{route('super-dashboard.aboutFoundation.show')}}" class="menu-link menu-toggle"><span class="menu-text"><i class="nav-icon far fa-building mx-3"></i>{{__('keywords.about.foundation')}}</span></a></li>
+
                 <li class="menu-section ">
-                    <h4 class="menu-text">{{__('keywords.old.man.museum')}}</h4>
+                    <h4 class="menu-text"></h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item  menu-item-submenu @if(in_array('old-man-memory-videos', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
-                        href="{{route('super-dashboard.oldManMemoryVideos.show')}}" class="menu-link menu-toggle"><i class="fas fa-video mx-3"></i><span class="menu-text">{{__('keywords.old.man.memory.videos')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('old-man-stuff', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
-                        href="{{route('super-dashboard.oldManStuff.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-couch"></i><span class="menu-text">{{__('keywords.old.stuff')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('old-man-images', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a
-                        href="{{route('super-dashboard.oldManImages.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-camera-retro"></i><span class="menu-text">{{__('keywords.old.man.images')}}</span></a></li>
+
+
+                @if(auth()->user()->hasRole(['superAdmin', 'yaseenVideos']) ||  auth()->user()->canany(['yaseenEditVideo', 'yaseenDeleteVideo', 'yaseenUpdateVideo', 'yaseenCreateVideo']))
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-memory-videos', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.oldManMemoryVideos.show')}}" class="menu-link menu-toggle"><i class="fas fa-video mx-3"></i><span class="menu-text">{{__('keywords.old.man.memory.videos')}}</span></a></li>
+                @endif
+
+
+                @if(auth()->user()->hasRole(['superAdmin', 'yaseenStuff']) ||  auth()->user()->canany(['yaseenEditStuff', 'yaseenDeleteStuff', 'yaseenUpdateStuff', 'yaseenCreateStuff']))
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-stuff', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.oldManStuff.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-couch"></i><span class="menu-text">{{__('keywords.old.stuff')}}</span></a></li>
+                @endif
+
+
+                @if(auth()->user()->hasRole(['superAdmin', 'yaseenImages']) ||  auth()->user()->canany(['yaseenEditImage', 'yaseenDeleteImage', 'yaseenUpdateImage', 'yaseenCreateImage']))
+                <li class="menu-item  menu-item-submenu @if(in_array('old-man-images', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.oldManImages.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-camera-retro"></i><span class="menu-text">{{__('keywords.old.man.images')}}</span></a></li>
+                @endif
 
                 @canany(['award', 'writer', 'free', 'poet', 'personality'])
                     <li class="menu-section ">
@@ -82,22 +88,43 @@
                     <h4 class="menu-text">{{__('keywords.news.center')}}</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item  menu-item-submenu @if(in_array('last-news', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastNews.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-newspaper"></i><span class="menu-text">{{__('keywords.last.news')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('last-ads', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastAds.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-ad"></i><span class="menu-text">{{__('keywords.last.ads')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('contact-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.contactUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 far fa-envelope"></i><span class="menu-text">{{__('keywords.contact.us')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('logo-foundation', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.logoFoundation.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fab fa-galactic-republic"></i><span class="menu-text">{{__('keywords.logo.foundation')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('they-said-about-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.theySaidAboutUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-microphone-alt"></i><span class="menu-text">{{__('keywords.they.said.about.us')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('images-show', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.imagesShow.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 far fa-images"></i><span class="menu-text">{{__('keywords.images.show')}}</span></a></li>
-                <li class="menu-item  menu-item-submenu @if(in_array('videos-show', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.videosShow.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-film"></i><span class="menu-text">{{__('keywords.videos.show')}}</span></a></li>
 
+
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('lastNews'))
+                <li class="menu-item  menu-item-submenu @if(in_array('last-news', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastNews.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-newspaper"></i><span class="menu-text">{{__('keywords.last.news')}}</span></a></li>
+                @endif
+
+                <li class="menu-item  menu-item-submenu @if(in_array('last-ads', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.lastAds.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-ad"></i><span class="menu-text">{{__('keywords.last.ads')}}</span></a></li>
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('contactUs'))
+                <li class="menu-item  menu-item-submenu @if(in_array('contact-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.contactUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 far fa-envelope"></i><span class="menu-text">{{__('keywords.contact.us')}}</span></a></li>
+                @endif
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('logoFoundations'))
+                <li class="menu-item  menu-item-submenu @if(in_array('logo-foundation', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.logoFoundation.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fab fa-galactic-republic"></i><span class="menu-text">{{__('keywords.logo.foundation')}}</span></a></li>
+                @endif
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('tellAboutUs'))
+                <li class="menu-item  menu-item-submenu @if(in_array('they-said-about-us', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.theySaidAboutUs.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-microphone-alt"></i><span class="menu-text">{{__('keywords.they.said.about.us')}}</span></a></li>
+                @endif
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('imagesShow'))
+                <li class="menu-item  menu-item-submenu @if(in_array('images-show', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.imagesShow.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 far fa-images"></i><span class="menu-text">{{__('keywords.images.show')}}</span></a></li>
+                @endif
+
+                @if(auth()->user()->hasRole(['superAdmin', 'mediaCenter']) ||  auth()->user()->can('videosShow'))
+                <li class="menu-item  menu-item-submenu @if(in_array('videos-show', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.videosShow.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-film"></i><span class="menu-text">{{__('keywords.videos.show')}}</span></a></li>
+                @endif
 
                 <li class="menu-section ">
                     <h4 class="menu-text"></h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                @role('permissions')
+
+                @hasanyrole('superAdmin|permissions')
                 <li class="menu-item  menu-item-submenu @if(in_array('permissions', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.UsersPermission.show')}}" class="menu-link menu-toggle"><i class="mx-3 mt-1 fas fa-user-cog"></i><span class="menu-text">{{__('keywords.permissions')}}</span></a></li>
-                @endrole
+                @endhasanyrole
             </ul>
             <br/><br/><br/><br/>
             <br/><br/><br/><br/>

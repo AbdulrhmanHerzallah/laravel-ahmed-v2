@@ -36,7 +36,7 @@ class OldManMemoryVideosController extends Controller
             'title' => 'required',
             'event_date' => 'date',
             'body' => 'required',
-            'video' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm'
+            'video.*' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm'
         ]);
 
         $fileName = Carbon::now()->timestamp.'-'.$request->file('video')->getClientOriginalName();

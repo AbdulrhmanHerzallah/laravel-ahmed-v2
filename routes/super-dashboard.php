@@ -11,7 +11,7 @@ Route::group(['as' => 'super.auth.', 'namespace' => 'SuperDashboard\Users'], fun
 Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'middleware' => ['auth', 'is_admin']], function (){
     Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
-        Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users', 'middleware' => 'role:permissions'], function (){
+        Route::group(['prefix' => 'permissions', 'as' => 'UsersPermission.', 'namespace' => 'Users', 'middleware' => 'role:permissions|superAdmin'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'PermissionsController@show']);
             Route::post('/store', ['as' => 'store', 'uses' => 'PermissionsController@store']);
     });
@@ -55,30 +55,49 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
         // end about ahmed
 
         // start old man memory videos
+
+
+
         Route::group(['prefix' => 'old-man-memory-videos', 'as' => 'oldManMemoryVideos.'], function () {
-            Route::get('/', ['as' => 'show', 'uses' => 'OldManMemoryVideosController@show']);
-            Route::post('/store', ['as' => 'store', 'uses' => 'OldManMemoryVideosController@store']);
-            Route::get('/create', ['as' => 'create', 'uses' => 'OldManMemoryVideosController@create']);
-            Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManMemoryVideosController@updateViewImage']);
-            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManMemoryVideosController@edit']);
-            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManMemoryVideosController@update']);
-            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'OldManMemoryVideosController@delete']);
-            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'OldManMemoryVideosController@restore']);
-            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'uses' => 'OldManMemoryVideosController@forceDelete']);
+            Route::get('/', ['as' => 'show', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenEditVideo|yaseenDeleteVideo|yaseenUpdateVideo|yaseenCreateVideo', 'uses' => 'OldManMemoryVideosController@show']);
+            Route::post('/store', ['as' => 'store', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenCreateVideo', 'uses' => 'OldManMemoryVideosController@store']);
+
+            Route::get('/create', ['as' => 'create', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenCreateVideo', 'uses' => 'OldManMemoryVideosController@create']);
+
+            Route::post('/update-view-image', ['as' => 'updateViewImage', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenUpdateVideo', 'uses' => 'OldManMemoryVideosController@updateViewImage']);
+
+            Route::get('/edit/{id}', ['as' => 'edit', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenUpdateVideo|yaseenEditVideo', 'uses' => 'OldManMemoryVideosController@edit']);
+
+            Route::post('/update/{id}', ['as' => 'update', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenUpdateVideo|yaseenEditVideo', 'uses' => 'OldManMemoryVideosController@update']);
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenDeleteVideo', 'uses' => 'OldManMemoryVideosController@delete']);
+
+            Route::get('/restore/{id}', ['as' => 'restore', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenDeleteVideo', 'uses' => 'OldManMemoryVideosController@restore']);
+            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'middleware' => 'ability:superAdmin|yaseenVideos|yaseenDeleteVideo', 'uses' => 'OldManMemoryVideosController@forceDelete']);
         });
         // end old man memory videos
 
         // start old man stuff
+
+
         Route::group(['prefix' => 'old-man-stuff', 'as' => 'oldManStuff.'], function (){
-            Route::get('/', ['as' => 'show', 'uses' => 'OldManStuffController@show']);
-            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'OldManStuffController@restore']);
-            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'OldManStuffController@delete']);
-            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'uses' => 'OldManStuffController@forceDelete']);
-            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManStuffController@edit']);
-            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManStuffController@update']);
-            Route::get('/create', ['as' => 'create', 'uses' => 'OldManStuffController@create']);
-            Route::post('/store', ['as' => 'store', 'uses' => 'OldManStuffController@store']);
-            Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManStuffController@updateViewImage']);
+            Route::get('/', ['as' => 'show', 'middleware' => 'ability:superAdmin|yaseenStuff|yaseenEditStuff|yaseenDeleteStuff|yaseenUpdateStuff|yaseenCreateStuff', 'uses' => 'OldManStuffController@show']);
+
+            Route::get('/restore/{id}', ['as' => 'restore', 'middleware' => 'ability:superAdmin|yaseenDeleteStuff', 'uses' => 'OldManStuffController@restore']);
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'middleware' => 'ability:superAdmin|yaseenStuff|yaseenDeleteStuff', 'uses' => 'OldManStuffController@delete']);
+
+            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'middleware' => 'ability:superAdmin|yaseenDeleteStuff', 'uses' => 'OldManStuffController@forceDelete']);
+
+            Route::get('/edit/{id}', ['as' => 'edit', 'middleware' => 'ability:superAdmin|yaseenUpdateStuff|yaseenEditStuff', 'uses' => 'OldManStuffController@edit']);
+
+            Route::post('/update/{id}', ['as' => 'update', 'middleware' => 'ability:superAdmin|yaseenUpdateStuff', 'uses' => 'OldManStuffController@update']);
+
+            Route::get('/create', ['as' => 'create', 'middleware' => 'ability:superAdmin|yaseenCreateStuff', 'uses' => 'OldManStuffController@create']);
+
+            Route::post('/store', ['as' => 'store', 'middleware' => 'ability:superAdmin|yaseenCreateStuff', 'uses' =>  'OldManStuffController@store']);
+
+            Route::post('/update-view-image', ['as' => 'updateViewImage', 'middleware' => 'ability:superAdmin|yaseenUpdateStuff', 'uses' => 'OldManStuffController@updateViewImage']);
 
 
         });
@@ -87,22 +106,33 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
 
         // start old mam images
 
+
+
+
         Route::group(['prefix' => 'old-man-images', 'as' => 'oldManImages.'], function (){
-            Route::get('/', ['as' => 'show', 'uses' => 'OldManImagesController@show']);
-            Route::get('/restore/{id}', ['as' => 'restore', 'uses' => 'OldManImagesController@restore']);
-            Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'OldManImagesController@delete']);
-            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'uses' => 'OldManImagesController@forceDelete']);
-            Route::get('/create', ['as' => 'create', 'uses' => 'OldManImagesController@create']);
-            Route::post('/store', ['as' => 'store', 'uses' => 'OldManImagesController@store']);
-            Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'OldManImagesController@edit']);
-            Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OldManImagesController@update']);
-            Route::post('/update-view-image', ['as' => 'updateViewImage', 'uses' => 'OldManImagesController@updateViewImage']);
+            Route::get('/', ['as' => 'show', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenEditImage|yaseenDeleteImage|yaseenUpdateImage|yaseenCreateImage', 'uses' => 'OldManImagesController@show']);
+
+            Route::get('/restore/{id}', ['as' => 'restore', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenDeleteImage', 'uses' => 'OldManImagesController@restore']);
+
+            Route::get('/delete/{id}', ['as' => 'delete', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenDeleteImage', 'uses' => 'OldManImagesController@delete']);
+
+            Route::get('/force-delete/{id}', ['as' => 'forceDelete', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenDeleteImage', 'uses' => 'OldManImagesController@forceDelete']);
+
+            Route::get('/create', ['as' => 'create', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenCreateImage', 'uses' => 'OldManImagesController@create']);
+
+            Route::post('/store', ['as' => 'store', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenCreateImage', 'uses' => 'OldManImagesController@store']);
+
+            Route::get('/edit/{id}', ['as' => 'edit', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenEditImage|yaseenUpdateImage', 'uses' => 'OldManImagesController@edit']);
+
+            Route::post('/update/{id}', ['as' => 'update', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenEditImage|yaseenUpdateImage', 'uses' => 'OldManImagesController@update']);
+
+            Route::post('/update-view-image', ['as' => 'updateViewImage', 'middleware' => 'ability:superAdmin|yaseenImages|yaseenEditImage|yaseenUpdateImage', 'uses' => 'OldManImagesController@updateViewImage']);
         });
         // end old man images
 
 
         // last news
-        Route::group(['prefix' => 'last-news', 'as' => 'lastNews.'], function (){
+        Route::group(['prefix' => 'last-news', 'as' => 'lastNews.', 'middleware' => 'ability:superAdmin|lastNews|mediaCenter'], function (){
             Route::get('/show',   ['as' => 'show', 'uses' => 'LastNewsController@show']);
             Route::get('/create', ['as' => 'create', 'uses' => 'LastNewsController@create']);
             Route::post('/store', ['as' => 'store', 'uses' => 'LastNewsController@store']);
@@ -131,19 +161,19 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
         });
         // end ads
 
-        Route::group(['prefix' => 'contact-us', 'as' => 'contactUs.'], function (){
+        Route::group(['prefix' => 'contact-us', 'as' => 'contactUs.', 'middleware' => 'ability:superAdmin|contactUs|mediaCenter'], function (){
             Route::get('/show',   ['as' => 'show', 'uses' => 'ContactUsController@show']);
             Route::get('/delete/{id}', ['as' => 'delete', 'uses' => 'ContactUsController@delete']);
         });
 
-        Route::group(['prefix' => 'logo-foundation', 'as' => 'logoFoundation.'], function () {
+        Route::group(['prefix' => 'logo-foundation', 'as' => 'logoFoundation.', 'middleware' => 'ability:superAdmin|logoFoundations|mediaCenter'], function () {
             Route::get('/show', ['as' => 'show', 'uses' => 'LogoFoundationController@show']);
             Route::get('/edit/{key}', ['as' => 'edit', 'uses' => 'LogoFoundationController@edit']);
             Route::post('/update/{key}', ['as' => 'update', 'uses' => 'LogoFoundationController@update']);
         });
 
 
-        Route::group(['prefix' => 'they-said-about-us', 'as' => 'theySaidAboutUs.'], function (){
+        Route::group(['prefix' => 'they-said-about-us', 'as' => 'theySaidAboutUs.', 'middleware' => 'ability:superAdmin|tellAboutUs|mediaCenter'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'TheySaidAboutUs@show']);
             Route::get('/create', ['as' => 'create', 'uses' => 'TheySaidAboutUs@create']);
             Route::post('/store', ['as' => 'store', 'uses' => 'TheySaidAboutUs@store']);
@@ -157,7 +187,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
             Route::get('/forceDelete/{id}', ['as' => 'forceDelete', 'uses' => 'TheySaidAboutUs@forceDelete']);
         });
 
-        Route::group(['prefix' => 'images-show', 'as' => 'imagesShow.'], function (){
+        Route::group(['prefix' => 'images-show', 'as' => 'imagesShow.', 'middleware' => 'ability:superAdmin|imagesShow|mediaCenter'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'ImagesShowController@show']);
             Route::get('/create', ['as' => 'create', 'uses' => 'ImagesShowController@create']);
             Route::post('/store', ['as' => 'store', 'uses' => 'ImagesShowController@store']);
@@ -169,7 +199,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
             Route::post('/update/{id}', ['as' => 'update', 'uses' => 'ImagesShowController@update']);
         });
 
-        Route::group(['prefix' => 'videos-show', 'as' => 'videosShow.'], function (){
+        Route::group(['prefix' => 'videos-show', 'as' => 'videosShow.', 'middleware' => 'ability:superAdmin|videosShow|mediaCenter'], function (){
             Route::get('/show', ['as' => 'show', 'uses' => 'VideosShowController@show']);
             Route::get('/create', ['as' => 'create', 'uses' => 'VideosShowController@create']);
             Route::post('/store', ['as' => 'store', 'uses' => 'VideosShowController@store']);
@@ -186,7 +216,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
     });
 
     //******** start awards *********//
-    Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards', 'middleware' => ['role_or_permission:award|free|poet|writer|personality']], function (){
+    Route::group(['prefix' => 'awards', 'as' => 'awards.', 'namespace' => 'Awards', 'middleware' => ['ability:superAdmin|award|free|poet|writer|personality']], function (){
         Route::get('/', ['as' => 'show', 'uses' => 'AwardsController@showAwards']);
         Route::get('/show-seasons/{slug}', ['as' => 'showSeasons', 'uses' => 'AwardsController@showSeasons']);
         Route::get('/apps/{id}/award/{award_name}/season/{season_name}', ['as' => 'showApps', 'uses' => 'AwardsController@showApps']);
@@ -211,7 +241,7 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
     //******** end awards *************//
     // awards
 
-    Route::group(['prefix' => 'winner', 'as' => 'winner.', 'namespace' => 'Awards'], function (){
+    Route::group(['prefix' => 'winner', 'as' => 'winner.', 'namespace' => 'Awards', 'middleware' => ['ability:superAdmin|award|free|poet|writer|personality']], function (){
         Route::get('/create-winners/award/{award_slug}/season/{season_slug}', ['as' => 'createWinner', 'uses' => 'WinnersController@createWinner']);
         Route::get('/show-winners/{award_slug}/{season_slug}', ['as' => 'showWinners', 'uses' => 'WinnersController@showWinners']);
         Route::post('/store-winner/{award_id}/{season_id}', ['as' => 'storeWinner', 'uses' => 'WinnersController@storeWinner']);

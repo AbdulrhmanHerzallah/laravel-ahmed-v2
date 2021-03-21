@@ -13,6 +13,8 @@
 @section('content')
     <div class="card card-custom gutter-b">
         <div class="card-header">
+            @if(auth()->user()->hasRole(['superAdmin', 'yaseenVideos']) ||  auth()->user()->can('yaseenCreateVideo'))
+
             <div class="card-title">
                 <a href="{{route('super-dashboard.oldManMemoryVideos.create')}}" class="btn btn-success mt-ladda-btn ladda-button" data-style="expand-up">
                     <span class="ladda-label">{{__('keywords.create.new')}}<i class="fas fa-plus mx-2"></i></span>
@@ -26,7 +28,7 @@
                     <span class="ladda-label">{{__('keywords.edit.image.show')}}<i class="far fa-edit"></i></span>
                     <span class="ladda-spinner"></span></button>
             </div>
-
+            @endif
         </div>
         <div class="card-body">
             <!--begin::Example-->
@@ -38,6 +40,7 @@
                             <th scope="col">{{__('keywords.title')}}</th>
                             <th scope="col">{{__('keywords.edit/delete')}}</th>
                             <th scope="col">{{__('keywords.activate/deactivate')}}</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -47,17 +50,23 @@
                                     {{$i->title}}
                                 </td>
                                 <td>
+                                    @if(auth()->user()->hasRole(['superAdmin', 'yaseenVideos']) ||  auth()->user()->canany(['yaseenEditVideo', 'yaseenUpdateVideo']))
                                     <a href="{{route('super-dashboard.oldManMemoryVideos.edit', ['id' => $i->id])}}" class="btn btn-primary">
                                         <i class="far fa-edit"></i>
                                     </a>
+                                    @endif
 
+
+                                    @if(auth()->user()->hasRole(['superAdmin', 'yaseenVideos']) ||  auth()->user()->can('yaseenDeleteVideo'))
                                     <button data-force-delete="{{route('super-dashboard.oldManMemoryVideos.forceDelete', ['id' => $i->id])}}" data-title="{{$i->title}}" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                    @endif
 
                                 </td>
                                 <td>
-                            <span class="switch switch-outline switch-icon switch-success d-flex justify-content-center">
+                                    @if(auth()->user()->hasRole(['superAdmin', 'yaseenVideos']) ||  auth()->user()->can('yaseenDeleteVideo'))
+                                    <span class="switch switch-outline switch-icon switch-success d-flex justify-content-center">
 									<label>
 										<input @if(!$i->deleted_at) checked @endif
                                         data-delete-route="{{route('super-dashboard.oldManMemoryVideos.delete', ['id' => $i->id])}}"
@@ -67,6 +76,7 @@
 									</label>
 								</span>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

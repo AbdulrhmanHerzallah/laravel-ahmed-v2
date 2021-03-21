@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'award'                  => 'جميع صلاحيات الجوائز',
+    'free'                   => 'جائزة الحريات',
+    'writer'                 => 'جائزة الكتابة',
+    'poet'                   => 'جائزة الشعر',
+    'personality'            => 'جائزة شخصية الموسم',
+    'yaseenImages'           => 'جميع صلاحيات معرض الصور',
+    'yaseenEditImage'        => 'تعديل محتوى الصور',
+    'yaseenDeleteImage'      => 'حذف محتوى الصور',
+    'yaseenUpdateImage'      => 'تحديث محتوى الصور',
+    'yaseenCreateImage'      => 'انشاء معرض الصور',
+    'yaseenVideos'           => 'جميع صلاحيات المقاطع المرئية للشيخ',
+    'yaseenEditVideo'        => 'تعديل محتوى الفديو',
+    'yaseenDeleteVideo'      => 'حدف محتوى معرض الفديو',
+    'yaseenUpdateVideo'      => 'تحديث معرض الفديو',
+    'yaseenCreateVideo'      => 'انشاء معرض الفديو',
+    'yaseenStuff'            => 'جميع صلاحيات مقتنيات الشيخ',
+    'yaseenEditStuff'        => 'تعديل مقتنيات الشيخ',
+    'yaseenDeleteStuff'      => 'حذف مقتنيات الشيخ',
+    'yaseenUpdateStuff'      => 'تحديث مقتنيات الشيخ',
+    'yaseenCreateStuff'      => 'انشاء مقتنيات الشيخ',
+    'mediaCenter'            => 'جميع صلاحيات المركز الاعلامي',
+    'contactUs'              => 'تواصل معنا',
+    'lastNews'               => 'آخر الاخبار',
+    'logoFoundations'        => 'شعار المؤسسة',
+    'tellAboutUs'            => 'قالو عن المؤسسة',
+    'imagesShow'             => 'معرض الصور',
+    'videosShow'             => 'معرض الفديو',
+    'permissions'            => 'اعطاء الصلاحيات لوضع الصلاحيات للاعضاء',
+    'superAdmin'             => 'التحكم بكل الموقع'
+];

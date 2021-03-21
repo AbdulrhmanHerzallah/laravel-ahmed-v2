@@ -29,7 +29,7 @@
                             <th scope="col">{{__('keywords.email')}}</th>
                             <th scope="col">{{__('keywords.the.user.name')}}</th>
                             <th scope="col">{{__('keywords.edit')}}</th>
-                            <th scope="col">{{__('keywords.activate/deactivate')}}</th>
+{{--                            <th scope="col">{{__('keywords.activate/deactivate')}}</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -39,18 +39,18 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->name}}</td>
                                 <td><button class="btn btn-success" id="editModel_{{$user->id}}" data-user-id="{{$user->id}}" data-toggle="modal" data-target="#edit_{{$user->id}}"><i class="fas fa-user-edit"></i></button></td>
-                                <td>
-                                <span
-                                    class="switch switch-outline switch-icon switch-success d-flex justify-content-center">
-									<label>
-										<input @if(!$user->deleted_at) checked @endif
-                                               data-delete-route="#"
-                                               data-restore-route="#"
-                                               onclick="toggleActive(event)" type="checkbox" name="select">
-										<span></span>
-									</label>
-								</span>
-                                </td>
+{{--                                <td>--}}
+{{--                                <span--}}
+{{--                                    class="switch switch-outline switch-icon switch-success d-flex justify-content-center">--}}
+{{--									<label>--}}
+{{--										<input @if(!$user->deleted_at) checked @endif--}}
+{{--                                               data-delete-route="#"--}}
+{{--                                               data-restore-route="#"--}}
+{{--                                               onclick="toggleActive(event)" type="checkbox" name="select">--}}
+{{--										<span></span>--}}
+{{--									</label>--}}
+{{--								</span>--}}
+{{--                                </td>--}}
                             </tr>
                         @endforeach
                         </tbody>
@@ -76,36 +76,49 @@
                 <form action="{{route('super-dashboard.UsersPermission.store')}}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <div>
+                        <div class="p-5">
                             <input type="hidden" name="user_id" value="{{$user->id}}">
                             @foreach($allPer as $role)
-                                <div class="form-group">
-                                    <input value="{{$role->name}}" name="{{$role->name}}" @if($user->hasRole($role->name)) checked @endif id="{{$role->name.'_'.$user->id}}" type="checkbox" class="form-check-input">
-                                    <label for="{{$role->name.'_'.$user->id}}" class="form-check-label">{{__('keywords.'.$role->name)}}</label>
+                                <div class="form-group" id="allPerm_{{$user->id}}">
+                                    <input value="{{$role->name}}" onclick="allPerm( event, '{{$role->name}}', {{$user->id}})" name="{{$role->name}}" @if($user->hasRole($role->name)) checked @endif id="{{$role->name.'_'.$user->id}}" type="checkbox" class="form-check-input">
+                                    <label for="{{$role->name.'_'.$user->id}}" class="form-check-label">{{__('permissions.'.$role->name)}}</label>
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-between">
+
                                     @foreach($role->permissions as $per)
-                                        <div>
-                                            <input value="{{$per->name}}"  @if($user->hasPermissionTo($per->name)) checked @endif name="{{$per->name}}" id="{{$per->name.'_'.$user->id}}" type="checkbox" class="form-check-input">
-                                            <label for="{{$per->name.'_'.$user->id}}" class="form-check-label">{{__('keywords.'.$per->name)}}</label>
-                                        </div>
+                                    <div class="{{$role->name}}_{{$user->id}}">
+                                        <input value="{{$per->name}}" @if($user->hasPermissionTo($per->name)) checked @endif name="{{$per->name}}" id="{{$per->name.'_'.$user->id}}" type="checkbox" class="form-check-input">
+                                        <label for="{{$per->name.'_'.$user->id}}" class="form-check-label">{{__('permissions.'.$per->name)}}</label>
+                                    </div>
                                     @endforeach
-                                </div>
 
-                                @if($loop->index == 0)
                                     <hr class="my-5">
-                                @endif
-
                             @endforeach
                         </div>
-                        <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('keywords.cancel')}}</button>
                             <button type="submit" class="btn btn-primary">{{__('keywords.save')}}</button>
-                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     @endforeach
+@endsection
+
+
+@section('script')
+    <script>
+        function allPerm(e, role_name, user_id){
+            if (e.target.checked)
+            {
+                document.querySelectorAll(`.${role_name}_${user_id}`).forEach(el => {
+                    el.children[0].setAttribute('checked', 'checked')
+                })
+            }
+            else {
+                document.querySelectorAll(`.${role_name}_${user_id}`).forEach(el => {
+                    el.children[0].removeAttribute('checked')
+                })
+            }
+        }
+    </script>
 @endsection

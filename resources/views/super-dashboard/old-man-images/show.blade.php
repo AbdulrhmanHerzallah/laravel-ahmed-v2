@@ -12,6 +12,8 @@
 @section('content')
     <div class="card card-custom gutter-b">
         <div class="card-header">
+
+            @if(auth()->user()->hasRole(['superAdmin', 'yaseenImages']) ||  auth()->user()->can('yaseenCreateImage'))
             <div class="card-title">
                 <a href="{{route('super-dashboard.oldManImages.create')}}" class="btn btn-success mt-ladda-btn ladda-button" data-style="expand-up">
                     <span class="ladda-label">{{__('keywords.create.new')}}<i class="fas fa-plus mx-2"></i></span>
@@ -25,6 +27,7 @@
                     <span class="ladda-label">{{__('keywords.edit.image.show')}}<i class="far fa-edit"></i></span>
                     <span class="ladda-spinner"></span></button>
             </div>
+            @endif
 
         </div>
         <div class="card-body">
@@ -46,13 +49,17 @@
                                     {{$i->title}}
                                 </td>
                                 <td>
+                                    @if(auth()->user()->hasRole(['superAdmin', 'yaseenImages']) ||  auth()->user()->can('yaseenDeleteImage'))
                                     <a href="{{route('super-dashboard.oldManImages.edit', ['id' => $i->id])}}" class="btn btn-primary">
                                         <i class="far fa-edit"></i>
                                     </a>
+                                    @endif
 
+                                   @if(auth()->user()->hasRole(['superAdmin', 'yaseenImages']) ||  auth()->user()->canany(['yaseenEditImage', 'yaseenUpdateImage']))
                                     <button data-force-delete="{{route('super-dashboard.oldManImages.forceDelete', ['id' => $i->id])}}" data-title="{{$i->title}}" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                                         <i class="fas fa-trash"></i>
                                     </button>
+                                   @endif
 
                                 </td>
                                 <td>
