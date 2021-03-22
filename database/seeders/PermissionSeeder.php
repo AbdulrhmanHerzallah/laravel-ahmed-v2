@@ -9,6 +9,8 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+use Illuminate\Support\Facades\DB;
+
 class PermissionSeeder extends Seeder
 {
     /**
@@ -74,5 +76,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'videosShow']);
         $mediaRole->syncPermissions(['contactUs', 'lastNews', 'logoFoundations', 'tellAboutUs', 'imagesShow', 'videosShow']);
         // end start stuff
+
+
     }
 }

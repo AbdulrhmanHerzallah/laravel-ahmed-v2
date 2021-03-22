@@ -70,7 +70,7 @@
                 <li class="menu-item  menu-item-submenu @if(in_array('old-man-images', request()->segments())) menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover"><a href="{{route('super-dashboard.oldManImages.show')}}" class="menu-link menu-toggle"><i class="mx-3 fas fa-camera-retro"></i><span class="menu-text">{{__('keywords.old.man.images')}}</span></a></li>
                 @endif
 
-                @canany(['award', 'writer', 'free', 'poet', 'personality'])
+                @if(auth()->user()->hasRole(['superAdmin', 'award']) ||  auth()->user()->canany(['free', 'poet', 'writer', 'personality']))
                     <li class="menu-section ">
                     <h4 class="menu-text">{{__('keywords.awards.department')}}</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -80,8 +80,7 @@
                 <li class="menu-item @if(in_array('awards', request()->segments()) || in_array('winner', request()->segments())) menu-item-open @endif" aria-haspopup="true">
                     <a href="{{route('super-dashboard.awards.show')}}" class="menu-link">
                         <span class="menu-text"><i class="nav-icon fas fa-gift mx-3"></i> {{__('keywords.awards')}}</span></a></li>
-              @endcanany
-
+                @endif
 
 
                 <li class="menu-section ">
