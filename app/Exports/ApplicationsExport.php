@@ -69,7 +69,7 @@ class ApplicationsExport implements FromCollection, WithMapping, ShouldAutoSize,
     public function headings(): array
     {
         return [
-            'Name', 'Email', 'Cv link file', 'Is Accepted', 'Nomination Status'
+            'Name', 'Email', 'Cv link file'
         ];
     }
 
