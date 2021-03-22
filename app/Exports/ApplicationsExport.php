@@ -44,7 +44,7 @@ class ApplicationsExport implements FromCollection, WithMapping, ShouldAutoSize,
         if ($isAccepted == 1 || true) {
            $isAccepted = __('keywords.has.approval');
         }
-        else{
+        elseif($isAccepted == false || null){
             $isAccepted = __('keywords.dos.not.have.approval');
         }
 
@@ -52,14 +52,14 @@ class ApplicationsExport implements FromCollection, WithMapping, ShouldAutoSize,
         if ($nominationStatus == 1 || true) {
             $nominationStatus = __('keywords.is.nomination');
         }
-        else{
+        elseif($nominationStatus == false || null){
             $nominationStatus = __('keywords.is.not.nomination');
         }
 
         return [
             $row->user->name,
             $row->user->email,
-            $row->cv_file,
+            url($row->cv_file),
             $isAccepted,
             $nominationStatus,
         ];
