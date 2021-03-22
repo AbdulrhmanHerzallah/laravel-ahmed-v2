@@ -31,8 +31,8 @@
                         </thead>
                         <tbody>
                         @foreach($awards as $i)
-                            @can($i->award_type)
-                            <tr>
+                                @if(auth()->user()->hasRole(['superAdmin', 'award']) ||  auth()->user()->can($i->award_type))
+                               <tr>
                                 <td>
                                     {{$i->name}}
                                 </td>
@@ -47,7 +47,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endcan
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
