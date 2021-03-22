@@ -237,6 +237,9 @@ Route::group(['as' => 'super-dashboard.', 'namespace' => 'SuperDashboard', 'midd
         Route::get('/accepted', ['as' => 'accepted', 'uses' => 'AwardsController@accepted']);
         Route::get('/show-apps-data-table/{id}', ['as' => 'showAppsDataTable', 'uses' => 'AwardsController@showAppsDataTable']);
 
+
+        Route::get('/applications-export/{id}', ['as' => 'ApplicationsExport', 'uses' => 'AwardsController@ApplicationsExport']);
+
     });
     //******** end awards *************//
     // awards

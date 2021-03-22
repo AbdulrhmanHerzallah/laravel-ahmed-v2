@@ -154,5 +154,9 @@ return [
     'poet' => 'جائزة الشعر',
     'award' => 'جميع صلاحيات الجوائز',
     'writer' => 'جائزة الكاتب',
-    'personality' => 'جائزة شحصية الموسم'
+    'personality' => 'جائزة شحصية الموسم',
+    'has.approval'   => 'لديه موافقة اولية',
+    'dos.not.have.approval'   => 'ليس لديه موافقة اولية',
+    'is.nomination'   => 'تم الترشيح',
+    'is.not.nomination'   => 'لم تتم الترشيح',
 ];

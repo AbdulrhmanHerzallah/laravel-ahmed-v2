@@ -11,6 +11,9 @@ use App\Models\Application;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\ApplicationsExport;
 
 class AwardsController extends Controller
 {
@@ -110,6 +113,23 @@ class AwardsController extends Controller
         {
             abort(404);
         }
+    }
+
+
+
+    public function ApplicationsExport($id)
+    {
+        $awardSeasons = AwardSeason::findOrFail($id);
+
+        $awardSeasons->apps()
+            ->addSelect(['steps' => Award::select('steps')
+                    ->whereColumn('award_id', 'awards.id')->limit(1) ?? ''])
+
+            ->addSelect(['award_type' => Award::select('award_type')
+                    ->whereColumn('award_id', 'awards.id')->limit(1) ?? ''])
+            ->with('user')
+            ->get();
+        return Excel::download(new ApplicationsExport($id), $awardSeasons->season_name.'-'.Carbon::now()->timestamp.'.xlsx');
     }
 
     public function showAppsDataTable($id)

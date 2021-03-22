@@ -11,6 +11,10 @@
 @section('content')
     <div class="p-5">
         <a href="{{route('super-dashboard.winner.createWinner', ['award_slug' => $awardSeasons->award->slug, 'season_slug' => $awardSeasons->slug])}}" class="btn btn-success">{{__('keywords.select.winners.in.season')}}<i class="mx-2 fas fa-user-plus"></i></a>
+        <div class="my-5">
+            <a href="{{route('super-dashboard.awards.ApplicationsExport', ['id' => $awardSeasons->id])}}" class="btn btn-primary">تصدير<i class="mx-2 fas fa-file-export"></i></a>
+
+        </div>
     </div>
     <div class="bg-white rounded p-5">
         <table id="apps">
