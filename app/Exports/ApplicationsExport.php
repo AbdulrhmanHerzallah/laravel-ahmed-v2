@@ -40,28 +40,28 @@ class ApplicationsExport implements FromCollection, WithMapping, ShouldAutoSize,
     public function map($row): array
     {
 
-        $isAccepted = $row->is_accepted;
-        if ($isAccepted == 1 || true) {
-           $isAccepted = __('keywords.has.approval');
-        }
-        elseif($isAccepted == false || null){
-            $isAccepted = __('keywords.dos.not.have.approval');
-        }
-
-        $nominationStatus = $row->nomination_status;
-        if ($nominationStatus == 1 || true) {
-            $nominationStatus = __('keywords.is.nomination');
-        }
-        elseif($nominationStatus == false || null){
-            $nominationStatus = __('keywords.is.not.nomination');
-        }
+//        $isAccepted = $row->is_accepted;
+//        if ($isAccepted == 1 || true) {
+//           $isAccepted = __('keywords.has.approval');
+//        }
+//        elseif($isAccepted == false || null){
+//            $isAccepted = __('keywords.dos.not.have.approval');
+//        }
+//
+//        $nominationStatus = $row->nomination_status;
+//        if ($nominationStatus == 1 || true) {
+//            $nominationStatus = __('keywords.is.nomination');
+//        }
+//        elseif($nominationStatus == false || null){
+//            $nominationStatus = __('keywords.is.not.nomination');
+//        }
 
         return [
             $row->user->name,
             $row->user->email,
             url($row->cv_file),
-            $isAccepted,
-            $nominationStatus,
+//            $isAccepted,
+//            $nominationStatus,
         ];
     }
 
