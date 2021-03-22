@@ -57,7 +57,9 @@ class AwardsController extends Controller
     public function showSeasons($slug)
     {
       $award = Award::with('awardSeasons')->where('slug', $slug)->firstOrFail(['name', 'id', 'slug', 'award_type']);
-      $per = auth()->user()->can($award->award_type);
+
+      $per = (auth()->user()->hasRole(['superAdmin', 'award']) ||  auth()->user()->can($award->award_type));
+
       if ($per)
       {
         return view('super-dashboard.awards.show-award-seasons', ['award' => $award]);
