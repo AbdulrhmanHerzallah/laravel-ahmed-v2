@@ -66,56 +66,15 @@
                     @enderror
                     <label for="videos">{{__('keywords.videos')}}</label>
                     <div>
-                        <input multiple accept=".mp4,.ogx,.oga,.ogv,.ogg,.webm" name="videos[]" id="videos" type="file">
+                        <input accept=".mp4,.ogx,.oga,.ogv,.ogg,.webm" name="videos[]" id="videos" type="file">
                     </div>
                 </div>
-                <div class="alert alert-warning">
-                    {{__('keywords.first.delete')}}
-                </div>
-                <table class="table">
-                    <caption>{{__('keywords.previous.subjects')}}</caption>
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">{{__('keywords.files')}}</th>
-                        <th scope="col">{{__('keywords.replacing.file')}}</th>
-                        <th scope="col">{{__('keywords.delete')}}</th>
+{{--                <div class="">--}}
+{{--                    <video width="320" height="240" autoplay>--}}
+{{--                        <source  src="{{$tabSubject->video}}" type="video/mp4">--}}
+{{--                    </video>--}}
+{{--                </div>--}}
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($tabSubject->files as $file)
-                        <tr>
-                            <th scope="row">{{$loop->index+1}}</th>
-                            @if($file->file_type == 'image')
-                                <td><img src="{{$file->path}}" alt="" width="200" height="200" class="img-fluid"></td>
-                            @elseif($file->file_type == 'video')
-                                <td>
-                                    <video width="200" height="200" controls>
-                                        <source src="{{$file->path}}" type="video/mp4">
-                                    </video>
-                                </td>
-                            @endif
-
-                            <td>
-                                <input type="file" name="files[]"
-                                       @if($file->file_type == 'image')
-                                       accept=".gif,.jpg,.jpeg,.png"
-                                       @elseif($file->file_type == 'video')
-                                       accept=".mp4,.ogx,.oga,.ogv,.ogg,.webm"
-                                    @endif
-                                >
-                                <input type="hidden" name="files_id[]" value="{{$file->id}}">
-                            </td>
-
-                            <td>
-                                <input type="checkbox" name="checkout_delete[]" value="{{$file->id}}">
-                            </td>
-
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary mr-2">{{__('keywords.save')}}</button>
